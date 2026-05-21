@@ -263,6 +263,34 @@ header p { font-size: 0.8rem; opacity: 0.9; }
   transition: width 0.3s;
 }
 
+/* Countdown */
+.countdown-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.countdown-label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.countdown-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.countdown-sub {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
 /* Tables */
 .table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
 .table th { text-align: left; padding: 8px 10px; color: var(--text-secondary); font-weight: 500; font-size: 0.75rem; border-bottom: 1px solid var(--border); }
@@ -545,6 +573,12 @@ header p { font-size: 0.8rem; opacity: 0.9; }
       <div class="progress-bar">
         <div class="progress-fill" id="progressFill" style="width: 0%"></div>
       </div>
+    </div>
+
+    <div class="countdown-card" id="countdownCard">
+      <div class="countdown-label" id="countdownLabel"></div>
+      <div class="countdown-value" id="countdownValue"></div>
+      <div class="countdown-sub" id="countdownSub"></div>
     </div>
 
     <div class="status-grid">
@@ -1601,9 +1635,32 @@ function getCountdownState(referenceDate) {
   return { phase: 'post' };
 }
 
+function renderCountdown() {
+  const state = getCountdownState();
+  const label = document.getElementById('countdownLabel');
+  const value = document.getElementById('countdownValue');
+  const sub = document.getElementById('countdownSub');
+  const card = document.getElementById('countdownCard');
+
+  if (state.phase === 'pre') {
+    label.textContent = 'Faltan';
+    value.textContent = state.daysRemaining + ' d\xedas';
+    sub.textContent = '8 de Junio 2026 \u00B7 Cataratas del Iguaz\xfa';
+    card.style.display = '';
+  } else if (state.phase === 'in-progress') {
+    label.textContent = '';
+    value.textContent = '\xa1Est\xe1s en Iguaz\xfa!';
+    sub.textContent = '8 \u2013 12 Junio 2026';
+    card.style.display = '';
+  } else {
+    card.style.display = 'none';
+  }
+}
+
 // Init
 loadTheme();
 restoreState();
+renderCountdown();
 </script>
 </body>
 </html>
