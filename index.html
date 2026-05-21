@@ -1580,6 +1580,27 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+// Countdown logic
+const TRIP_START = new Date(2026, 5, 8);  // 2026-06-08
+const TRIP_END = new Date(2026, 5, 12);   // 2026-06-12
+
+function getCountdownState(referenceDate) {
+  const now = referenceDate || new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  if (today < TRIP_START) {
+    const diffMs = TRIP_START.getTime() - today.getTime();
+    const daysRemaining = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+    return { phase: 'pre', daysRemaining: daysRemaining };
+  }
+
+  if (today <= TRIP_END) {
+    return { phase: 'in-progress' };
+  }
+
+  return { phase: 'post' };
+}
+
 // Init
 loadTheme();
 restoreState();
