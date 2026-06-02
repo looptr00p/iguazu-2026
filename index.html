@@ -445,6 +445,52 @@ header p { font-size: 0.8rem; opacity: 0.9; }
   width: 36px; height: 36px; border-radius: 50%; font-size: 1.2rem; cursor: pointer;
 }
 .doc-viewer-img { max-width: 100%; max-height: calc(100vh - 120px); border-radius: var(--radius); object-fit: contain; }
+
+/* ── Pendientes: add-task & new-card ─────────────────────────── */
+.add-task-form {
+  display: flex; gap: 8px; margin-top: 10px;
+  padding-top: 10px; border-top: 1px solid var(--border);
+}
+.add-task-input {
+  flex: 1; min-width: 0; background: var(--bg-card-alt);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  padding: 7px 10px; font-size: 0.82rem; color: var(--text); font-family: inherit;
+}
+.add-task-input:focus { outline: none; border-color: var(--primary); }
+.add-task-input::placeholder { color: var(--text-muted); }
+.add-task-btn {
+  background: var(--primary); color: white; border: none;
+  border-radius: var(--radius-sm); width: 36px; height: 36px;
+  font-size: 1.2rem; font-weight: 700; cursor: pointer; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.add-task-btn:active { opacity: 0.85; }
+.custom-task-delete {
+  background: none; border: none; color: var(--text-muted);
+  font-size: 0.8rem; cursor: pointer; padding: 0 2px; flex-shrink: 0;
+}
+.custom-task-delete:hover { color: var(--danger); }
+.new-card-form {
+  background: var(--bg-card); border-radius: var(--radius);
+  padding: 14px 16px; box-shadow: var(--shadow);
+  margin-bottom: 12px; border: 2px dashed var(--border);
+}
+.new-card-toggle {
+  background: none; border: none; color: var(--primary);
+  font-size: 0.9rem; font-weight: 600; cursor: pointer;
+  display: flex; align-items: center; gap: 6px; padding: 0; width: 100%;
+}
+.new-card-fields { display: none; margin-top: 12px; }
+.new-card-fields.visible { display: block; }
+.new-card-task-row { display: flex; gap: 8px; margin-bottom: 6px; }
+.new-card-actions { display: flex; gap: 8px; margin-top: 10px; }
+.btn-secondary {
+  background: var(--bg-card-alt); color: var(--text-secondary);
+  border: 1px solid var(--border); padding: 10px 16px;
+  border-radius: var(--radius-sm); font-size: 0.875rem;
+  font-weight: 500; cursor: pointer; flex: 1;
+}
+.btn-secondary:active { opacity: 0.8; }
 </style>
 </head>
 <body>
@@ -724,6 +770,24 @@ header p { font-size: 0.8rem; opacity: 0.9; }
         </ul>
         <div class="note mt-12"><strong>Recomendación</strong>OFF naranja o DEET 20–30%.</div>
       </div></div>
+    </div>
+
+    <!-- Nuevo pendiente -->
+    <div class="new-card-form">
+      <button class="new-card-toggle" onclick="toggleNewCardForm()">➕ Agregar nuevo pendiente</button>
+      <div class="new-card-fields" id="newCardFields">
+        <input class="form-input-full" type="text" id="newCardTitle" placeholder="Nombre (ej. Vacunas, Seguro adicional...)">
+        <div id="newCardTasks">
+          <div class="new-card-task-row">
+            <input class="form-input" type="text" placeholder="Tarea 1" style="flex:1">
+          </div>
+        </div>
+        <button onclick="addTaskRowToForm()" style="background:none;border:1px dashed var(--primary);color:var(--primary);border-radius:var(--radius-sm);padding:6px 12px;font-size:0.8rem;font-weight:600;cursor:pointer;margin-top:4px">+ Tarea</button>
+        <div class="new-card-actions">
+          <button class="btn-primary" onclick="saveNewCard()">Guardar</button>
+          <button class="btn-secondary" onclick="toggleNewCardForm()">Cancelar</button>
+        </div>
+      </div>
     </div>
 
     <button class="reset-btn" onclick="resetAll()">🗑️ Resetear todos los pendientes</button>
@@ -1160,6 +1224,7 @@ function toggleCheck(el) {
   el.classList.toggle('checked');
   el.nextElementSibling.classList.toggle('completed');
   updateProgress();
+  updateCardBadge(el.closest('.card'));
 }
 
 function restoreState() {
@@ -1503,14 +1568,242 @@ function esc(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
+// ── Badge auto-update ─────────────────────────────────────────────
+function updateCardBadge(card) {
+  if (!card) return;
+  const badge = card.querySelector('.card-header .card-badge');
+  if (!badge || badge.textContent.trim() === 'Opcional') return;
+  const boxes = card.querySelectorAll('.checklist-checkbox');
+  if (!boxes.length) return;
+  const done = [...boxes].every(cb => cb.classList.contains('checked'));
+  badge.textContent = done ? 'Completado' : 'Pendiente';
+  badge.className   = 'card-badge ' + (done ? 'badge-success' : 'badge-warning');
+}
+
+function updateAllBadges() {
+  document.querySelectorAll('#section-pendientes .card').forEach(updateCardBadge);
+}
+
+// ── Custom tasks (agregadas a cards existentes) ───────────────────
+const CUSTOM_TASKS_KEY = 'iguazu2026_custom_tasks';
+const CUSTOM_CARDS_KEY = 'iguazu2026_custom_cards';
+
+function loadCustomTasks() {
+  try { return JSON.parse(localStorage.getItem(CUSTOM_TASKS_KEY)) || {}; } catch { return {}; }
+}
+function saveCustomTasks(d) { localStorage.setItem(CUSTOM_TASKS_KEY, JSON.stringify(d)); }
+function loadCustomCards() {
+  try { return JSON.parse(localStorage.getItem(CUSTOM_CARDS_KEY)) || []; } catch { return []; }
+}
+function saveCustomCards(d) { localStorage.setItem(CUSTOM_CARDS_KEY, JSON.stringify(d)); }
+
+function buildChecklistItem(id, text, deletable) {
+  const li = document.createElement('li');
+  li.className = 'checklist-item';
+  const checked = !!loadState()[id];
+  li.innerHTML =
+    '<div class="checklist-checkbox' + (checked ? ' checked' : '') + '" data-id="' + esc(id) + '" onclick="toggleCheck(this)"></div>'
+    + '<span class="checklist-text' + (checked ? ' completed' : '') + '">' + esc(text) + '</span>'
+    + (deletable ? '<button class="custom-task-delete" onclick="deleteCustomTask(this,\'' + esc(id) + '\')" aria-label="Eliminar">✕</button>' : '');
+  return li;
+}
+
+function restoreCustomTasks() {
+  const tasks = loadCustomTasks();
+  Object.entries(tasks).forEach(([group, list]) => {
+    const cb = document.querySelector('.checklist-checkbox[data-id^="' + group + '-"]');
+    if (!cb) return;
+    const checklist = cb.closest('.checklist');
+    if (checklist) list.forEach(t => checklist.appendChild(buildChecklistItem(t.id, t.text, true)));
+  });
+}
+
+function injectAddTaskForms() {
+  document.querySelectorAll('#section-pendientes .card').forEach(card => {
+    const body = card.querySelector('.card-body');
+    if (!body || body.querySelector('.add-task-form')) return;
+    const cb = card.querySelector('.checklist-checkbox');
+    if (!cb) return;
+    // group = card id for custom cards, or prefix-before-dash for existing cards
+    const group = card.dataset.customCardId || cb.dataset.id.split('-')[0];
+    const form = document.createElement('div');
+    form.className = 'add-task-form';
+    form.innerHTML =
+      '<input class="add-task-input" type="text" placeholder="Nueva tarea..." data-group="' + esc(group) + '">'
+      + '<button class="add-task-btn" onclick="submitAddTask(this)" aria-label="Agregar">+</button>';
+    body.appendChild(form);
+    form.querySelector('.add-task-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') submitAddTask(form.querySelector('.add-task-btn'));
+    });
+  });
+}
+
+function submitAddTask(btn) {
+  const input = btn.previousElementSibling;
+  const text  = input.value.trim();
+  const group = input.dataset.group;
+  if (!text || !group) return;
+  const card      = btn.closest('.card');
+  const checklist = card.querySelector('.checklist');
+  if (!checklist) return;
+  let newId;
+  if (group.startsWith('cc_')) {
+    const cards = loadCustomCards();
+    const cc = cards.find(c => c.id === group);
+    if (!cc) return;
+    newId = group + '_t_' + Date.now();
+    cc.tasks.push({ id: newId, text });
+    saveCustomCards(cards);
+  } else {
+    const tasks = loadCustomTasks();
+    if (!tasks[group]) tasks[group] = [];
+    newId = group + '_ct_' + Date.now();
+    tasks[group].push({ id: newId, text });
+    saveCustomTasks(tasks);
+  }
+  checklist.appendChild(buildChecklistItem(newId, text, true));
+  input.value = '';
+  updateProgress();
+  updateCardBadge(card);
+}
+
+function deleteCustomTask(btn, id) {
+  if (id.includes('_ct_')) {
+    const group = id.split('_ct_')[0];
+    const tasks = loadCustomTasks();
+    if (tasks[group]) { tasks[group] = tasks[group].filter(t => t.id !== id); saveCustomTasks(tasks); }
+  } else {
+    const cardId = id.substring(0, id.lastIndexOf('_t_'));
+    const cards  = loadCustomCards();
+    const cc     = cards.find(c => c.id === cardId);
+    if (cc) { cc.tasks = cc.tasks.filter(t => t.id !== id); saveCustomCards(cards); }
+  }
+  const s = loadState(); delete s[id]; saveState(s);
+  btn.closest('.checklist-item').remove();
+  updateProgress();
+  updateCardBadge(btn.closest('.card'));
+}
+
+// ── Custom cards ──────────────────────────────────────────────────
+function renderCustomCards() {
+  document.querySelectorAll('.custom-card-wrapper').forEach(el => el.remove());
+  const cards   = loadCustomCards();
+  const resetBtn = document.querySelector('#section-pendientes .reset-btn');
+  cards.forEach(cc => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'custom-card-wrapper';
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.dataset.customCardId = cc.id;
+
+    const header = document.createElement('div');
+    header.className = 'card-header';
+    header.onclick = function() { toggleCard(this); };
+    header.innerHTML =
+      '<span class="card-title"><span class="card-icon">📌</span> ' + esc(cc.title) + '</span>'
+      + '<div style="display:flex;align-items:center;gap:8px">'
+      + '<span class="card-badge badge-warning">Pendiente</span>'
+      + '<button style="background:none;border:none;color:var(--text-muted);font-size:1rem;cursor:pointer;padding:2px 4px" '
+      + 'onclick="deleteCustomCard(event,\'' + esc(cc.id) + '\')" aria-label="Eliminar">🗑️</button>'
+      + '<span class="card-chevron">▼</span>'
+      + '</div>';
+
+    const content = document.createElement('div');
+    content.className = 'card-content';
+    const body = document.createElement('div');
+    body.className = 'card-body';
+    const ul = document.createElement('ul');
+    ul.className = 'checklist';
+    cc.tasks.forEach(t => ul.appendChild(buildChecklistItem(t.id, t.text, false)));
+    body.appendChild(ul);
+
+    const form = document.createElement('div');
+    form.className = 'add-task-form';
+    form.innerHTML =
+      '<input class="add-task-input" type="text" placeholder="Nueva tarea..." data-group="' + esc(cc.id) + '">'
+      + '<button class="add-task-btn" onclick="submitAddTask(this)" aria-label="Agregar">+</button>';
+    form.querySelector('.add-task-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') submitAddTask(form.querySelector('.add-task-btn'));
+    });
+    body.appendChild(form);
+
+    content.appendChild(body);
+    card.appendChild(header);
+    card.appendChild(content);
+    wrapper.appendChild(card);
+    const anchor = document.querySelector('#section-pendientes .new-card-form');
+    anchor.parentNode.insertBefore(wrapper, anchor);
+    updateCardBadge(card);
+  });
+}
+
+function deleteCustomCard(e, cardId) {
+  e.stopPropagation();
+  if (!confirm('¿Eliminar este pendiente y todas sus tareas?')) return;
+  const cards = loadCustomCards();
+  const cc    = cards.find(c => c.id === cardId);
+  if (cc) {
+    const s = loadState();
+    cc.tasks.forEach(t => delete s[t.id]);
+    const ct = loadCustomTasks();
+    if (ct[cardId]) { ct[cardId].forEach(t => delete s[t.id]); delete ct[cardId]; saveCustomTasks(ct); }
+    saveState(s);
+  }
+  saveCustomCards(cards.filter(c => c.id !== cardId));
+  renderCustomCards();
+  updateProgress();
+}
+
+// ── New card form ─────────────────────────────────────────────────
+function toggleNewCardForm() {
+  const fields = document.getElementById('newCardFields');
+  fields.classList.toggle('visible');
+  if (fields.classList.contains('visible')) document.getElementById('newCardTitle').focus();
+}
+
+function addTaskRowToForm() {
+  const container = document.getElementById('newCardTasks');
+  const count = container.querySelectorAll('.new-card-task-row').length;
+  const row = document.createElement('div');
+  row.className = 'new-card-task-row';
+  row.innerHTML = '<input class="form-input" type="text" placeholder="Tarea ' + (count + 1) + '" style="flex:1">';
+  container.appendChild(row);
+  row.querySelector('input').focus();
+}
+
+function saveNewCard() {
+  const title = document.getElementById('newCardTitle').value.trim();
+  if (!title) { document.getElementById('newCardTitle').focus(); return; }
+  const inputs = document.querySelectorAll('#newCardTasks .new-card-task-row input');
+  const cardId = 'cc_' + Date.now();
+  const tasks  = [];
+  inputs.forEach((inp, i) => {
+    if (inp.value.trim()) tasks.push({ id: cardId + '_t_' + i, text: inp.value.trim() });
+  });
+  if (!tasks.length) { inputs[0] && inputs[0].focus(); return; }
+  const cards = loadCustomCards();
+  cards.push({ id: cardId, title, tasks });
+  saveCustomCards(cards);
+  document.getElementById('newCardTitle').value = '';
+  document.getElementById('newCardTasks').innerHTML =
+    '<div class="new-card-task-row"><input class="form-input" type="text" placeholder="Tarea 1" style="flex:1"></div>';
+  document.getElementById('newCardFields').classList.remove('visible');
+  renderCustomCards();
+  updateProgress();
+}
+
 // ── Init ──────────────────────────────────────────────────────────
 loadTheme();
 restoreState();
 restoreNotes();
+restoreCustomTasks();
 renderCountdown();
 renderGastos();
 renderDocs();
 renderHoy();
+renderCustomCards();
+injectAddTaskForms();
+updateAllBadges();
 updateClocks();
 setInterval(updateClocks, 60000);
 </script>
