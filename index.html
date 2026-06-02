@@ -491,13 +491,43 @@ header p { font-size: 0.8rem; opacity: 0.9; }
   font-weight: 500; cursor: pointer; flex: 1;
 }
 .btn-secondary:active { opacity: 0.8; }
+
+/* ── Update banner ───────────────────────────────────────────── */
+.update-banner {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--primary-bg);
+  border-bottom: 1px solid var(--primary-light);
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  color: var(--primary);
+  position: sticky;
+  top: 108px;
+  z-index: 98;
+}
+.update-banner span { flex: 1; font-weight: 500; }
+.update-banner-btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.update-banner-btn:active { opacity: 0.85; }
 </style>
 </head>
 <body>
 
 <header>
   <h1>Cataratas del Iguazú 2026</h1>
-  <p>8 – 12 Junio · Nicolás & Melannie</p>
+  <p>8 – 12 Junio · Nicolás & Melannie &nbsp;<span id="appVersionBadge" style="font-size:0.68rem;opacity:0.65;letter-spacing:0.3px">v1.3</span></p>
   <div class="header-actions">
     <button class="header-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
     <button class="header-btn" onclick="toggleEmergency()">🚨</button>
@@ -514,6 +544,12 @@ header p { font-size: 0.8rem; opacity: 0.9; }
   <button class="nav-tab" data-section="packing">Packing</button>
   <button class="nav-tab" data-section="links">Links</button>
 </nav>
+
+<!-- Banner de actualización disponible -->
+<div id="updateBanner" class="update-banner">
+  <span>🆕 Nueva versión disponible</span>
+  <button class="update-banner-btn" onclick="applyUpdate()">Actualizar app</button>
+</div>
 
 <div class="container">
 
@@ -1312,9 +1348,52 @@ function installApp() {
   });
 }
 
-// ── Service Worker ────────────────────────────────────────────────
-if ('serviceWorker' in navigator)
-  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
+// ── Versión ───────────────────────────────────────────────────────
+const APP_VERSION = '1.3';
+
+// ── Service Worker + detección de actualizaciones ─────────────────
+let waitingSW = null;
+
+function showUpdateBanner() {
+  document.getElementById('updateBanner').style.display = 'flex';
+}
+
+function applyUpdate() {
+  if (waitingSW) {
+    waitingSW.postMessage({ type: 'SKIP_WAITING' });
+  } else {
+    // Fallback: limpiar caché manualmente y recargar
+    caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k))))
+      .then(() => window.location.reload());
+  }
+}
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').then(reg => {
+      // Ya hay un SW esperando (ej: usuario abrió la app tras deploy)
+      if (reg.waiting && navigator.serviceWorker.controller) {
+        waitingSW = reg.waiting;
+        showUpdateBanner();
+      }
+      // Nuevo SW encontrado durante la sesión
+      reg.addEventListener('updatefound', () => {
+        const newSW = reg.installing;
+        newSW.addEventListener('statechange', () => {
+          if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
+            waitingSW = newSW;
+            showUpdateBanner();
+          }
+        });
+      });
+    }).catch(() => {});
+
+    // Cuando el SW toma el control → recargar para cargar nueva versión
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      window.location.reload();
+    });
+  });
+}
 
 // ── Countdown ─────────────────────────────────────────────────────
 const TRIP_START = new Date(2026, 5, 8);

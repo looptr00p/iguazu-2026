@@ -1,4 +1,4 @@
-const CACHE_NAME = 'iguazu-2026-v2';
+const CACHE_NAME = 'iguazu-2026-v3';
 const ASSETS = [
   './',
   './index.html',
@@ -12,7 +12,11 @@ self.addEventListener('install', (e) => {
   e.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS))
   );
-  self.skipWaiting();
+  // No skipWaiting() — el nuevo SW espera hasta que el usuario confirme la actualización
+});
+
+self.addEventListener('message', (e) => {
+  if (e.data && e.data.type === 'SKIP_WAITING') self.skipWaiting();
 });
 
 self.addEventListener('activate', (e) => {
