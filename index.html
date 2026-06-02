@@ -33,7 +33,6 @@
   --radius: 12px;
   --radius-sm: 8px;
 }
-
 [data-theme="dark"] {
   --bg: #0f172a;
   --bg-card: #1e293b;
@@ -54,9 +53,7 @@
   --shadow: 0 1px 3px rgba(0,0,0,0.3);
   --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.4);
 }
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: var(--bg);
@@ -65,7 +62,6 @@ body {
   -webkit-tap-highlight-color: transparent;
   padding-bottom: 80px;
 }
-
 header {
   background: linear-gradient(135deg, #0f766e 0%, #0d9488 50%, #14b8a6 100%);
   color: white;
@@ -75,10 +71,8 @@ header {
   z-index: 100;
   box-shadow: var(--shadow-lg);
 }
-
 header h1 { font-size: 1.25rem; font-weight: 700; margin-bottom: 2px; }
 header p { font-size: 0.8rem; opacity: 0.9; }
-
 .header-actions {
   position: absolute;
   top: 16px;
@@ -86,7 +80,6 @@ header p { font-size: 0.8rem; opacity: 0.9; }
   display: flex;
   gap: 8px;
 }
-
 .header-btn {
   background: rgba(255,255,255,0.2);
   border: none;
@@ -101,9 +94,7 @@ header p { font-size: 0.8rem; opacity: 0.9; }
   justify-content: center;
   backdrop-filter: blur(4px);
 }
-
 .header-btn:active { background: rgba(255,255,255,0.3); }
-
 .container { padding: 16px; max-width: 600px; margin: 0 auto; }
 
 /* Navigation Tabs */
@@ -120,9 +111,7 @@ header p { font-size: 0.8rem; opacity: 0.9; }
   top: 68px;
   z-index: 99;
 }
-
 .nav-tabs::-webkit-scrollbar { display: none; }
-
 .nav-tab {
   padding: 8px 14px;
   border: none;
@@ -135,12 +124,7 @@ header p { font-size: 0.8rem; opacity: 0.9; }
   cursor: pointer;
   transition: all 0.2s;
 }
-
-.nav-tab.active {
-  background: var(--primary);
-  color: white;
-}
-
+.nav-tab.active { background: var(--primary); color: white; }
 .nav-tab:active { transform: scale(0.95); }
 
 /* Sections */
@@ -155,7 +139,6 @@ header p { font-size: 0.8rem; opacity: 0.9; }
   margin-bottom: 12px;
   overflow: hidden;
 }
-
 .card-header {
   padding: 14px 16px;
   display: flex;
@@ -166,59 +149,40 @@ header p { font-size: 0.8rem; opacity: 0.9; }
   border-bottom: 1px solid transparent;
   transition: all 0.2s;
 }
-
 .card-header:active { background: var(--bg-card-alt); }
-
 .card-header.expanded { border-bottom-color: var(--border); }
-
-.card-title {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 600;
-  font-size: 0.95rem;
-}
-
+.card-title { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 0.95rem; }
 .card-icon { font-size: 1.2rem; }
-
-.card-badge {
-  font-size: 0.7rem;
-  padding: 3px 8px;
-  border-radius: 12px;
-  font-weight: 600;
-}
-
+.card-badge { font-size: 0.7rem; padding: 3px 8px; border-radius: 12px; font-weight: 600; }
 .badge-success { background: var(--success-bg); color: var(--success); }
 .badge-warning { background: var(--warning-bg); color: var(--warning); }
 .badge-danger { background: var(--danger-bg); color: var(--danger); }
 .badge-info { background: var(--primary-bg); color: var(--primary); }
-
-.card-chevron {
-  transition: transform 0.2s;
-  color: var(--text-muted);
-  font-size: 0.8rem;
-}
-
+.card-chevron { transition: transform 0.2s; color: var(--text-muted); font-size: 0.8rem; }
 .card-chevron.rotated { transform: rotate(180deg); }
-
-.card-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-}
-
-.card-content.expanded { max-height: 2000px; }
-
+.card-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.card-content.expanded { max-height: 3000px; }
 .card-body { padding: 14px 16px; }
 
-/* Status Grid */
-.status-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
+/* Clock widget */
+.clock-widget {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  box-shadow: var(--shadow);
   margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
+.clock-item { text-align: center; }
+.clock-city { font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 2px; }
+.clock-time { font-size: 1.4rem; font-weight: 700; color: var(--primary); letter-spacing: 0.5px; }
+.clock-date { font-size: 0.7rem; color: var(--text-muted); margin-top: 1px; }
+.clock-divider { width: 1px; height: 40px; background: var(--border); }
 
+/* Status Grid */
+.status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
 .status-item {
   background: var(--bg-card);
   border-radius: var(--radius-sm);
@@ -228,7 +192,6 @@ header p { font-size: 0.8rem; opacity: 0.9; }
   flex-direction: column;
   gap: 4px;
 }
-
 .status-icon { font-size: 1.3rem; }
 .status-label { font-size: 0.75rem; color: var(--text-secondary); }
 .status-value { font-size: 0.85rem; font-weight: 600; }
@@ -241,21 +204,8 @@ header p { font-size: 0.8rem; opacity: 0.9; }
   box-shadow: var(--shadow);
   margin-bottom: 16px;
 }
-
-.progress-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
-  font-size: 0.85rem;
-}
-
-.progress-bar {
-  height: 8px;
-  background: var(--bg-card-alt);
-  border-radius: 4px;
-  overflow: hidden;
-}
-
+.progress-header { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.85rem; }
+.progress-bar { height: 8px; background: var(--bg-card-alt); border-radius: 4px; overflow: hidden; }
 .progress-fill {
   height: 100%;
   background: linear-gradient(90deg, var(--primary), var(--primary-light));
@@ -272,24 +222,24 @@ header p { font-size: 0.8rem; opacity: 0.9; }
   margin-bottom: 16px;
   text-align: center;
 }
+.countdown-label { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 4px; }
+.countdown-value { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+.countdown-sub { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
 
-.countdown-label {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  margin-bottom: 4px;
+/* Hoy card */
+.hoy-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
+  border-left: 4px solid var(--primary);
 }
-
-.countdown-value {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--primary);
-}
-
-.countdown-sub {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  margin-top: 2px;
-}
+.hoy-label { font-size: 0.72rem; font-weight: 600; color: var(--primary); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 4px; }
+.hoy-day { font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
+.hoy-items { list-style: none; }
+.hoy-item { font-size: 0.85rem; color: var(--text-secondary); padding: 3px 0; display: flex; align-items: flex-start; gap: 7px; }
+.hoy-item::before { content: '·'; color: var(--primary); font-weight: 700; flex-shrink: 0; }
 
 /* Tables */
 .table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
@@ -299,73 +249,32 @@ header p { font-size: 0.8rem; opacity: 0.9; }
 
 /* Checklists */
 .checklist { list-style: none; }
-
-.checklist-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border);
-}
-
+.checklist-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); }
 .checklist-item:last-child { border-bottom: none; }
-
 .checklist-checkbox {
-  width: 20px;
-  height: 20px;
-  border-radius: 4px;
-  border: 2px solid var(--border);
-  cursor: pointer;
-  flex-shrink: 0;
-  margin-top: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s;
-  background: var(--bg-card);
+  width: 20px; height: 20px; border-radius: 4px; border: 2px solid var(--border);
+  cursor: pointer; flex-shrink: 0; margin-top: 2px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s; background: var(--bg-card);
 }
-
-.checklist-checkbox.checked {
-  background: var(--success);
-  border-color: var(--success);
-}
-
-.checklist-checkbox.checked::after {
-  content: '✓';
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
-}
-
+.checklist-checkbox.checked { background: var(--success); border-color: var(--success); }
+.checklist-checkbox.checked::after { content: '✓'; color: white; font-size: 12px; font-weight: bold; }
 .checklist-text { flex: 1; font-size: 0.9rem; }
 .checklist-text.completed { text-decoration: line-through; color: var(--text-muted); }
 
 /* Info Blocks */
-.info-block {
-  background: var(--bg-card-alt);
-  border-radius: var(--radius-sm);
-  padding: 12px;
-  margin-bottom: 10px;
-}
-
+.info-block { background: var(--bg-card-alt); border-radius: var(--radius-sm); padding: 12px; margin-bottom: 10px; }
 .info-block:last-child { margin-bottom: 0; }
-
 .info-label { font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 2px; }
 .info-value { font-size: 0.9rem; font-weight: 500; }
 
 /* Links */
 .link-list { list-style: none; }
-
 .link-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--border);
-  text-decoration: none;
-  color: var(--text);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 0; border-bottom: 1px solid var(--border);
+  text-decoration: none; color: var(--text);
 }
-
 .link-item:last-child { border-bottom: none; }
 .link-label { font-weight: 500; font-size: 0.9rem; }
 .link-url { font-size: 0.75rem; color: var(--text-muted); }
@@ -373,167 +282,169 @@ header p { font-size: 0.8rem; opacity: 0.9; }
 
 /* Emergency Mode */
 .emergency-overlay {
-  position: fixed;
-  inset: 0;
-  background: var(--bg);
-  z-index: 200;
-  display: none;
-  padding: 16px;
-  overflow-y: auto;
+  position: fixed; inset: 0; background: var(--bg); z-index: 200;
+  display: none; padding: 16px; overflow-y: auto;
 }
-
 .emergency-overlay.active { display: block; }
-
-.emergency-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
-}
-
+.emergency-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
 .emergency-title { font-size: 1.1rem; font-weight: 700; color: var(--danger); }
-
 .emergency-close {
-  background: var(--bg-card-alt);
-  border: none;
-  color: var(--text);
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  font-size: 1.2rem;
-  cursor: pointer;
+  background: var(--bg-card-alt); border: none; color: var(--text);
+  width: 36px; height: 36px; border-radius: 50%; font-size: 1.2rem; cursor: pointer;
 }
-
 .emergency-card {
-  background: var(--bg-card);
-  border-radius: var(--radius);
-  padding: 16px;
-  margin-bottom: 12px;
-  box-shadow: var(--shadow);
-  border-left: 4px solid var(--danger);
+  background: var(--bg-card); border-radius: var(--radius); padding: 16px;
+  margin-bottom: 12px; box-shadow: var(--shadow); border-left: 4px solid var(--danger);
 }
-
 .emergency-card h3 { font-size: 0.95rem; margin-bottom: 8px; }
 .emergency-card p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 4px; }
 
 /* Bottom Nav */
 .bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: var(--bg-card);
-  border-top: 1px solid var(--border);
-  display: flex;
-  justify-content: space-around;
-  padding: 8px 0;
-  z-index: 100;
-  box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: var(--bg-card); border-top: 1px solid var(--border);
+  display: flex; justify-content: space-around;
+  padding: 8px 0; z-index: 100; box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
 }
-
 .bottom-btn {
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  font-size: 0.65rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  cursor: pointer;
-  padding: 4px 12px;
-  border-radius: 8px;
-  transition: all 0.2s;
+  background: none; border: none; color: var(--text-muted);
+  font-size: 0.58rem; display: flex; flex-direction: column;
+  align-items: center; gap: 2px; cursor: pointer;
+  padding: 4px 6px; border-radius: 8px; transition: all 0.2s;
 }
-
 .bottom-btn.active { color: var(--primary); }
 .bottom-btn:active { background: var(--bg-card-alt); }
-.bottom-btn-icon { font-size: 1.3rem; }
+.bottom-btn-icon { font-size: 1.2rem; }
 
 /* Utility */
 .text-center { text-align: center; }
 .text-muted { color: var(--text-muted); font-size: 0.8rem; }
-.mt-8 { margin-top: 8px; }
-.mt-12 { margin-top: 12px; }
-.mt-16 { margin-top: 16px; }
-.mb-8 { margin-bottom: 8px; }
-.mb-12 { margin-bottom: 12px; }
-.mb-16 { margin-bottom: 16px; }
-
-.section-title {
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.tag {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 16px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  background: var(--primary-bg);
-  color: var(--primary);
-  margin-right: 6px;
-  margin-bottom: 6px;
-}
-
-.note {
-  background: var(--warning-bg);
-  border-radius: var(--radius-sm);
-  padding: 12px;
-  font-size: 0.85rem;
-  color: var(--warning);
-  margin-top: 10px;
-}
-
+.mt-8 { margin-top: 8px; } .mt-12 { margin-top: 12px; } .mt-16 { margin-top: 16px; }
+.mb-8 { margin-bottom: 8px; } .mb-12 { margin-bottom: 12px; } .mb-16 { margin-bottom: 16px; }
+.section-title { font-size: 1rem; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.note { background: var(--warning-bg); border-radius: var(--radius-sm); padding: 12px; font-size: 0.85rem; color: var(--warning); margin-top: 10px; }
 .note strong { display: block; margin-bottom: 4px; }
-
-/* Reset button */
 .reset-btn {
-  background: var(--danger-bg);
-  color: var(--danger);
-  border: none;
-  padding: 10px 16px;
-  border-radius: var(--radius-sm);
-  font-size: 0.85rem;
-  font-weight: 500;
-  cursor: pointer;
-  width: 100%;
-  margin-top: 16px;
+  background: var(--danger-bg); color: var(--danger); border: none;
+  padding: 10px 16px; border-radius: var(--radius-sm);
+  font-size: 0.85rem; font-weight: 500; cursor: pointer; width: 100%; margin-top: 16px;
 }
-
 .reset-btn:active { opacity: 0.8; }
-
-/* Install banner */
 .install-banner {
-  background: var(--primary-bg);
-  border-radius: var(--radius);
-  padding: 14px 16px;
-  margin-bottom: 16px;
-  display: none;
-  align-items: center;
-  gap: 12px;
+  background: var(--primary-bg); border-radius: var(--radius);
+  padding: 14px 16px; margin-bottom: 16px; display: none; align-items: center; gap: 12px;
 }
-
 .install-banner.visible { display: flex; }
-
 .install-banner p { font-size: 0.85rem; color: var(--primary); flex: 1; }
-
 .install-btn {
-  background: var(--primary);
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
+  background: var(--primary); color: white; border: none;
+  padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;
+  cursor: pointer; white-space: nowrap;
 }
+
+/* Day notes */
+.day-note {
+  width: 100%; min-height: 70px;
+  background: var(--bg-card-alt); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 10px;
+  font-size: 0.85rem; color: var(--text); font-family: inherit;
+  resize: vertical; margin-top: 12px;
+}
+.day-note:focus { outline: none; border-color: var(--primary); }
+.day-note::placeholder { color: var(--text-muted); }
+
+/* Gastos */
+.gastos-summary {
+  background: var(--bg-card); border-radius: var(--radius);
+  padding: 16px; box-shadow: var(--shadow); margin-bottom: 12px;
+}
+.gastos-total-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+.gastos-total-label { font-size: 0.85rem; color: var(--text-secondary); }
+.gastos-total-value { font-size: 1.5rem; font-weight: 700; }
+.gastos-cats { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.gastos-cat {
+  background: var(--bg-card-alt); border-radius: var(--radius-sm);
+  padding: 8px 10px; display: flex; justify-content: space-between; align-items: center;
+}
+.gastos-cat-name { font-size: 0.75rem; color: var(--text-secondary); }
+.gastos-cat-val { font-size: 0.85rem; font-weight: 600; }
+.add-gasto-form {
+  background: var(--bg-card); border-radius: var(--radius);
+  padding: 16px; box-shadow: var(--shadow); margin-bottom: 12px;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+.form-field { display: flex; flex-direction: column; gap: 4px; }
+.form-label { font-size: 0.75rem; color: var(--text-secondary); font-weight: 500; }
+.form-input, .form-select {
+  background: var(--bg-card-alt); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 9px 10px;
+  font-size: 0.85rem; color: var(--text); font-family: inherit; width: 100%;
+}
+.form-input:focus, .form-select:focus { outline: none; border-color: var(--primary); }
+.form-input-full {
+  background: var(--bg-card-alt); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 9px 10px;
+  font-size: 0.85rem; color: var(--text); font-family: inherit; width: 100%; margin-bottom: 8px;
+}
+.form-input-full:focus { outline: none; border-color: var(--primary); }
+.btn-primary {
+  background: var(--primary); color: white; border: none;
+  padding: 10px 16px; border-radius: var(--radius-sm);
+  font-size: 0.875rem; font-weight: 600; cursor: pointer; width: 100%;
+}
+.btn-primary:active { opacity: 0.85; }
+.gastos-list { list-style: none; }
+.gasto-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.gasto-item:last-child { border-bottom: none; }
+.gasto-info { flex: 1; min-width: 0; }
+.gasto-desc { font-size: 0.875rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.gasto-meta { font-size: 0.75rem; color: var(--text-muted); }
+.gasto-amount { font-size: 0.95rem; font-weight: 700; white-space: nowrap; }
+.gasto-delete { background: none; border: none; color: var(--text-muted); font-size: 1rem; cursor: pointer; padding: 4px; flex-shrink: 0; }
+.empty-state { text-align: center; padding: 24px 16px; color: var(--text-muted); font-size: 0.85rem; }
+
+/* Docs */
+.docs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.doc-slot {
+  background: var(--bg-card); border-radius: var(--radius); padding: 14px;
+  box-shadow: var(--shadow); display: flex; flex-direction: column;
+  align-items: center; gap: 8px; text-align: center; position: relative;
+}
+.doc-slot-icon { font-size: 1.8rem; }
+.doc-slot-name { font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); line-height: 1.3; }
+.doc-upload-label {
+  background: var(--primary-bg); color: var(--primary);
+  border: 1.5px dashed var(--primary); border-radius: var(--radius-sm);
+  padding: 6px 12px; font-size: 0.75rem; font-weight: 600; cursor: pointer; width: 100%;
+  display: block; text-align: center;
+}
+.doc-view-btn {
+  background: var(--primary); color: white; border: none;
+  border-radius: var(--radius-sm); padding: 6px 12px;
+  font-size: 0.75rem; font-weight: 600; cursor: pointer; width: 100%;
+}
+.doc-delete-btn {
+  position: absolute; top: 8px; right: 8px;
+  background: var(--danger-bg); border: none; color: var(--danger);
+  width: 22px; height: 22px; border-radius: 50%; font-size: 0.65rem;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.doc-filename { font-size: 0.68rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; }
+.doc-upload-input { display: none; }
+
+/* Doc viewer overlay */
+.doc-viewer-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 300;
+  display: none; flex-direction: column; align-items: center; justify-content: center; padding: 16px;
+}
+.doc-viewer-overlay.active { display: flex; }
+.doc-viewer-header { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 600px; margin-bottom: 12px; }
+.doc-viewer-title { color: white; font-weight: 600; font-size: 0.9rem; }
+.doc-viewer-close {
+  background: rgba(255,255,255,0.2); border: none; color: white;
+  width: 36px; height: 36px; border-radius: 50%; font-size: 1.2rem; cursor: pointer;
+}
+.doc-viewer-img { max-width: 100%; max-height: calc(100vh - 120px); border-radius: var(--radius); object-fit: contain; }
 </style>
 </head>
 <body>
@@ -542,36 +453,43 @@ header p { font-size: 0.8rem; opacity: 0.9; }
   <h1>Cataratas del Iguazú 2026</h1>
   <p>8 – 12 Junio · Nicolás & Melannie</p>
   <div class="header-actions">
-    <button class="header-btn" onclick="toggleTheme()" title="Cambiar tema" id="themeBtn">🌙</button>
-    <button class="header-btn" onclick="toggleEmergency()" title="Modo emergencia" id="emergencyBtn">🚨</button>
+    <button class="header-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+    <button class="header-btn" onclick="toggleEmergency()">🚨</button>
   </div>
 </header>
 
-<nav class="nav-tabs" id="navTabs">
+<nav class="nav-tabs">
   <button class="nav-tab active" data-section="dashboard">Dashboard</button>
   <button class="nav-tab" data-section="pendientes">Pendientes</button>
-  <button class="nav-tab" data-section="info">Info Viaje</button>
   <button class="nav-tab" data-section="itinerario">Itinerario</button>
+  <button class="nav-tab" data-section="gastos">Gastos</button>
+  <button class="nav-tab" data-section="docs">Documentos</button>
+  <button class="nav-tab" data-section="info">Info Viaje</button>
   <button class="nav-tab" data-section="packing">Packing</button>
   <button class="nav-tab" data-section="links">Links</button>
 </nav>
 
 <div class="container">
 
-  <!-- DASHBOARD -->
+  <!-- ═══ DASHBOARD ═══ -->
   <div class="section active" id="section-dashboard">
     <div class="install-banner" id="installBanner">
       <p>Instala la app en tu celular para acceso rápido</p>
       <button class="install-btn" onclick="installApp()">Instalar</button>
     </div>
 
-    <div class="progress-container">
-      <div class="progress-header">
-        <span>Progreso general</span>
-        <span id="progressPercent">0%</span>
+    <!-- F1: Relojes -->
+    <div class="clock-widget">
+      <div class="clock-item">
+        <div class="clock-city">🇨🇱 Santiago</div>
+        <div class="clock-time" id="clockCL">--:--</div>
+        <div class="clock-date" id="clockCLDate"></div>
       </div>
-      <div class="progress-bar">
-        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+      <div class="clock-divider"></div>
+      <div class="clock-item">
+        <div class="clock-city">🇦🇷 Iguazú</div>
+        <div class="clock-time" id="clockAR">--:--</div>
+        <div class="clock-date" id="clockARDate"></div>
       </div>
     </div>
 
@@ -581,46 +499,63 @@ header p { font-size: 0.8rem; opacity: 0.9; }
       <div class="countdown-sub" id="countdownSub"></div>
     </div>
 
+    <!-- F2: Qué hago hoy -->
+    <div class="hoy-card" id="hoyCard" style="display:none">
+      <div class="hoy-label">📍 Hoy</div>
+      <div class="hoy-day" id="hoyDayTitle"></div>
+      <ul class="hoy-items" id="hoyItems"></ul>
+    </div>
+
+    <div class="progress-container">
+      <div class="progress-header">
+        <span>Progreso general</span>
+        <span id="progressPercent">0%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width:0%"></div>
+      </div>
+    </div>
+
     <div class="status-grid">
       <div class="status-item">
         <span class="status-icon">✈️</span>
         <span class="status-label">Vuelos</span>
-        <span class="status-value" style="color: var(--success)">✅ Comprados</span>
+        <span class="status-value" style="color:var(--success)">✅ Comprados</span>
       </div>
       <div class="status-item">
         <span class="status-icon">🏨</span>
         <span class="status-label">Hotel</span>
-        <span class="status-value" style="color: var(--success)">✅ Pagado</span>
+        <span class="status-value" style="color:var(--success)">✅ Pagado</span>
       </div>
       <div class="status-item">
         <span class="status-icon">🎟️</span>
         <span class="status-label">Entradas</span>
-        <span class="status-value" style="color: var(--success)">✅ Compradas</span>
+        <span class="status-value" style="color:var(--success)">✅ Compradas</span>
       </div>
       <div class="status-item">
         <span class="status-icon">🛡️</span>
         <span class="status-label">Seguro</span>
-        <span class="status-value" style="color: var(--success)">✅ Contratado</span>
+        <span class="status-value" style="color:var(--success)">✅ Contratado</span>
       </div>
       <div class="status-item">
         <span class="status-icon">📶</span>
         <span class="status-label">eSIM</span>
-        <span class="status-value" style="color: var(--warning)">⬜ Pendiente</span>
+        <span class="status-value" style="color:var(--warning)">⬜ Pendiente</span>
       </div>
       <div class="status-item">
         <span class="status-icon">💳</span>
         <span class="status-label">Global66</span>
-        <span class="status-value" style="color: var(--warning)">⬜ Pendiente</span>
+        <span class="status-value" style="color:var(--warning)">⬜ Pendiente</span>
       </div>
       <div class="status-item">
         <span class="status-icon">💺</span>
         <span class="status-label">Asientos</span>
-        <span class="status-value" style="color: var(--warning)">⬜ Pendiente</span>
+        <span class="status-value" style="color:var(--warning)">⬜ Pendiente</span>
       </div>
       <div class="status-item">
         <span class="status-icon">🚕</span>
         <span class="status-label">Transfer</span>
-        <span class="status-value" style="color: var(--warning)">⬜ Pendiente</span>
+        <span class="status-value" style="color:var(--warning)">⬜ Pendiente</span>
       </div>
     </div>
 
@@ -631,547 +566,170 @@ header p { font-size: 0.8rem; opacity: 0.9; }
       </div>
       <div class="card-content expanded">
         <div class="card-body">
-          <div class="info-block">
-            <div class="info-label">Fechas</div>
-            <div class="info-value">Lunes 8 – Sábado 13 Junio 2026</div>
-          </div>
-          <div class="info-block">
-            <div class="info-label">Duración</div>
-            <div class="info-value">4 noches · 5 días</div>
-          </div>
-          <div class="info-block">
-            <div class="info-label">Ruta</div>
-            <div class="info-value">Santiago (SCL) → Puerto Iguazú (IGR)</div>
-          </div>
-          <div class="info-block">
-            <div class="info-label">Tipo</div>
-            <div class="info-value">Naturaleza · Aventura moderada · Relax</div>
-          </div>
-          <div class="info-block">
-            <div class="info-label">Equipaje</div>
-            <div class="info-value">Solo equipaje de cabina</div>
-          </div>
+          <div class="info-block"><div class="info-label">Fechas</div><div class="info-value">Lunes 8 – Sábado 13 Junio 2026</div></div>
+          <div class="info-block"><div class="info-label">Duración</div><div class="info-value">4 noches · 5 días</div></div>
+          <div class="info-block"><div class="info-label">Ruta</div><div class="info-value">Santiago (SCL) → Puerto Iguazú (IGR)</div></div>
+          <div class="info-block"><div class="info-label">Tipo</div><div class="info-value">Naturaleza · Aventura moderada · Relax</div></div>
+          <div class="info-block"><div class="info-label">Equipaje</div><div class="info-value">Solo equipaje de cabina</div></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- PENDIENTES -->
+  <!-- ═══ PENDIENTES ═══ -->
   <div class="section" id="section-pendientes">
     <div class="section-title">📋 Pendientes por completar</div>
 
-    <!-- eSIM -->
     <div class="card">
       <div class="card-header" onclick="toggleCard(this)">
         <span class="card-title"><span class="card-icon">📶</span> eSIM</span>
         <span class="card-badge badge-warning">Pendiente</span>
         <span class="card-chevron">▼</span>
       </div>
-      <div class="card-content">
-        <div class="card-body">
-          <ul class="checklist" data-group="esim">
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="esim-1" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Comprar eSIM</span>
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="esim-2" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Verificar compatibilidad del teléfono</span>
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="esim-3" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Activarla antes del viaje</span>
-            </li>
-          </ul>
-          <div class="note mt-12">
-            <strong>Recomendación</strong>
-            Airalo 3GB compartido. Alternativas: Holafly, Saily.
-          </div>
-        </div>
-      </div>
+      <div class="card-content"><div class="card-body">
+        <ul class="checklist">
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="esim-1" onclick="toggleCheck(this)"></div><span class="checklist-text">Comprar eSIM</span></li>
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="esim-2" onclick="toggleCheck(this)"></div><span class="checklist-text">Verificar compatibilidad del teléfono</span></li>
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="esim-3" onclick="toggleCheck(this)"></div><span class="checklist-text">Activarla antes del viaje</span></li>
+        </ul>
+        <div class="note mt-12"><strong>Recomendación</strong>Airalo 3GB compartido. Alternativas: Holafly, Saily.</div>
+      </div></div>
     </div>
 
-    <!-- Asientos JetSMART -->
     <div class="card">
       <div class="card-header" onclick="toggleCard(this)">
         <span class="card-title"><span class="card-icon">💺</span> Asientos JetSMART</span>
         <span class="card-badge badge-warning">Pendiente</span>
         <span class="card-chevron">▼</span>
       </div>
-      <div class="card-content">
-        <div class="card-body">
-          <ul class="checklist" data-group="asientos">
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="asientos-1" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Revisar precio asientos</span>
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="asientos-2" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Decidir si pagar</span>
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="asientos-3" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Completar selección</span>
-            </li>
-          </ul>
-          <div class="note mt-12">
-            <strong>Recomendación</strong>
-            Vale la pena si cuesta menos de USD 5 por persona.
-          </div>
-        </div>
-      </div>
+      <div class="card-content"><div class="card-body">
+        <ul class="checklist">
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="asientos-1" onclick="toggleCheck(this)"></div><span class="checklist-text">Revisar precio asientos</span></li>
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="asientos-2" onclick="toggleCheck(this)"></div><span class="checklist-text">Decidir si pagar</span></li>
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="asientos-3" onclick="toggleCheck(this)"></div><span class="checklist-text">Completar selección</span></li>
+        </ul>
+        <div class="note mt-12"><strong>Recomendación</strong>Vale la pena si cuesta menos de USD 5 por persona.</div>
+      </div></div>
     </div>
 
-    <!-- Transfer hotel -->
     <div class="card">
       <div class="card-header" onclick="toggleCard(this)">
         <span class="card-title"><span class="card-icon">🚕</span> Confirmar transfer hotel</span>
         <span class="card-badge badge-warning">Pendiente</span>
         <span class="card-chevron">▼</span>
       </div>
-      <div class="card-content">
-        <div class="card-body">
-          <ul class="checklist" data-group="transfer">
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="transfer-1" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Contactar hotel</span>
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="transfer-2" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Confirmar vuelo Sky 537</span>
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="transfer-3" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Confirmar horario llegada</span>
-            </li>
-          </ul>
-          <div class="info-block mt-12">
-            <div class="info-label">Datos importantes</div>
-            <div class="info-value">Llegada estimada: 15:30 · Aeropuerto: IGR</div>
-          </div>
-        </div>
-      </div>
+      <div class="card-content"><div class="card-body">
+        <ul class="checklist">
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="transfer-1" onclick="toggleCheck(this)"></div><span class="checklist-text">Contactar hotel</span></li>
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="transfer-2" onclick="toggleCheck(this)"></div><span class="checklist-text">Confirmar vuelo Sky 537</span></li>
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="transfer-3" onclick="toggleCheck(this)"></div><span class="checklist-text">Confirmar horario llegada</span></li>
+        </ul>
+        <div class="info-block mt-12"><div class="info-label">Datos importantes</div><div class="info-value">Llegada estimada: 15:30 · Aeropuerto: IGR</div></div>
+      </div></div>
     </div>
 
-    <!-- Gran Aventura -->
     <div class="card">
       <div class="card-header" onclick="toggleCard(this)">
         <span class="card-title"><span class="card-icon">🌊</span> Decidir Gran Aventura</span>
         <span class="card-badge badge-info">Opcional</span>
         <span class="card-chevron">▼</span>
       </div>
-      <div class="card-content">
-        <div class="card-body">
-          <ul class="checklist" data-group="aventura">
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="aventura-1" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Revisar presupuesto</span>
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="aventura-2" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Decidir si la harán</span>
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="aventura-3" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Reservar anticipadamente</span>
-            </li>
-          </ul>
-          <div class="info-block mt-12">
-            <div class="info-label">Precio estimado</div>
-            <div class="info-value">USD 170–270 total</div>
-          </div>
-          <div class="note mt-8">
-            <strong>Consideraciones</strong>
-            Actividad más espectacular del parque. Mojan completamente. Llevar funda impermeable.
-          </div>
-        </div>
-      </div>
+      <div class="card-content"><div class="card-body">
+        <ul class="checklist">
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="aventura-1" onclick="toggleCheck(this)"></div><span class="checklist-text">Revisar presupuesto</span></li>
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="aventura-2" onclick="toggleCheck(this)"></div><span class="checklist-text">Decidir si la harán</span></li>
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="aventura-3" onclick="toggleCheck(this)"></div><span class="checklist-text">Reservar anticipadamente</span></li>
+        </ul>
+        <div class="info-block mt-12"><div class="info-label">Precio estimado</div><div class="info-value">USD 170–270 total</div></div>
+        <div class="note mt-8"><strong>Consideraciones</strong>Actividad más espectacular del parque. Mojan completamente. Llevar funda impermeable.</div>
+      </div></div>
     </div>
 
-    <!-- Efectivo USD -->
     <div class="card">
       <div class="card-header" onclick="toggleCard(this)">
         <span class="card-title"><span class="card-icon">💵</span> Llevar efectivo USD</span>
         <span class="card-badge badge-warning">Pendiente</span>
         <span class="card-chevron">▼</span>
       </div>
-      <div class="card-content">
-        <div class="card-body">
-          <ul class="checklist" data-group="efectivo">
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="efectivo-1" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Comprar USD</span>
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="efectivo-2" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Preparar efectivo emergencia</span>
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="efectivo-3" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Guardar separado del equipaje</span>
-            </li>
-          </ul>
-          <div class="note mt-12">
-            <strong>Recomendación</strong>
-            Llevar USD 100–120. No cambiar demasiado ARS.
-          </div>
-        </div>
-      </div>
+      <div class="card-content"><div class="card-body">
+        <ul class="checklist">
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="efectivo-1" onclick="toggleCheck(this)"></div><span class="checklist-text">Comprar USD</span></li>
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="efectivo-2" onclick="toggleCheck(this)"></div><span class="checklist-text">Preparar efectivo emergencia</span></li>
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="efectivo-3" onclick="toggleCheck(this)"></div><span class="checklist-text">Guardar separado del equipaje</span></li>
+        </ul>
+        <div class="note mt-12"><strong>Recomendación</strong>Llevar USD 100–120. No cambiar demasiado ARS.</div>
+      </div></div>
     </div>
 
-    <!-- Global66 -->
     <div class="card">
       <div class="card-header" onclick="toggleCard(this)">
         <span class="card-title"><span class="card-icon">💳</span> Preparar Global66</span>
         <span class="card-badge badge-warning">Pendiente</span>
         <span class="card-chevron">▼</span>
       </div>
-      <div class="card-content">
-        <div class="card-body">
-          <ul class="checklist" data-group="global66">
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="global66-1" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Agregar USD a la cuenta</span>
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="global66-2" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Recibir tarjeta física</span>
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="global66-3" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Activar tarjeta</span>
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="global66-4" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Probar compra pequeña</span>
-            </li>
-          </ul>
-          <div class="note mt-12">
-            <strong>Estrategia</strong>
-            Usar Global66 como respaldo y pagos cotidianos.
-          </div>
-        </div>
-      </div>
+      <div class="card-content"><div class="card-body">
+        <ul class="checklist">
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="global66-1" onclick="toggleCheck(this)"></div><span class="checklist-text">Agregar USD a la cuenta</span></li>
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="global66-2" onclick="toggleCheck(this)"></div><span class="checklist-text">Recibir tarjeta física</span></li>
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="global66-3" onclick="toggleCheck(this)"></div><span class="checklist-text">Activar tarjeta</span></li>
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="global66-4" onclick="toggleCheck(this)"></div><span class="checklist-text">Probar compra pequeña</span></li>
+        </ul>
+        <div class="note mt-12"><strong>Estrategia</strong>Usar Global66 como respaldo y pagos cotidianos.</div>
+      </div></div>
     </div>
 
-    <!-- Check-in vuelos -->
     <div class="card">
       <div class="card-header" onclick="toggleCard(this)">
         <span class="card-title"><span class="card-icon">✈️</span> Check-in vuelos</span>
         <span class="card-badge badge-warning">Pendiente</span>
         <span class="card-chevron">▼</span>
       </div>
-      <div class="card-content">
-        <div class="card-body">
-          <ul class="checklist" data-group="checkin">
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="checkin-1" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Check-in Sky Airline</span>
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="checkin-2" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Check-in JetSMART</span>
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="checkin-3" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Descargar boarding passes</span>
-            </li>
-          </ul>
-          <div class="note mt-12">
-            <strong>Recomendación</strong>
-            Hacer check-in 24–48h antes.
-          </div>
-        </div>
-      </div>
+      <div class="card-content"><div class="card-body">
+        <ul class="checklist">
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="checkin-1" onclick="toggleCheck(this)"></div><span class="checklist-text">Check-in Sky Airline</span></li>
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="checkin-2" onclick="toggleCheck(this)"></div><span class="checklist-text">Check-in JetSMART</span></li>
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="checkin-3" onclick="toggleCheck(this)"></div><span class="checklist-text">Descargar boarding passes</span></li>
+        </ul>
+        <div class="note mt-12"><strong>Recomendación</strong>Hacer check-in 24–48h antes.</div>
+      </div></div>
     </div>
 
-    <!-- Bolsa impermeable -->
     <div class="card">
       <div class="card-header" onclick="toggleCard(this)">
         <span class="card-title"><span class="card-icon">📱</span> Bolsa impermeable celular</span>
         <span class="card-badge badge-warning">Pendiente</span>
         <span class="card-chevron">▼</span>
       </div>
-      <div class="card-content">
-        <div class="card-body">
-          <ul class="checklist" data-group="bolsa">
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="bolsa-1" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Comprar bolsa impermeable</span>
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="bolsa-2" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Probar cierre antes del viaje</span>
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="bolsa-3" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Llevar al parque</span>
-            </li>
-          </ul>
-          <div class="note mt-12">
-            <strong>Recomendación</strong>
-            Clave para Circuito Inferior y Gran Aventura.
-          </div>
-        </div>
-      </div>
+      <div class="card-content"><div class="card-body">
+        <ul class="checklist">
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="bolsa-1" onclick="toggleCheck(this)"></div><span class="checklist-text">Comprar bolsa impermeable</span></li>
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="bolsa-2" onclick="toggleCheck(this)"></div><span class="checklist-text">Probar cierre antes del viaje</span></li>
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="bolsa-3" onclick="toggleCheck(this)"></div><span class="checklist-text">Llevar al parque</span></li>
+        </ul>
+        <div class="note mt-12"><strong>Recomendación</strong>Clave para Circuito Inferior y Gran Aventura.</div>
+      </div></div>
     </div>
 
-    <!-- Repelente -->
     <div class="card">
       <div class="card-header" onclick="toggleCard(this)">
         <span class="card-title"><span class="card-icon">🦟</span> Comprar repelente</span>
         <span class="card-badge badge-warning">Pendiente</span>
         <span class="card-chevron">▼</span>
       </div>
-      <div class="card-content">
-        <div class="card-body">
-          <ul class="checklist" data-group="repelente">
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="repelente-1" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Comprar repelente en Chile</span>
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="repelente-2" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Guardar en ziplock</span>
-            </li>
-            <li class="checklist-item">
-              <div class="checklist-checkbox" data-id="repelente-3" onclick="toggleCheck(this)"></div>
-              <span class="checklist-text">Llevar diariamente al parque</span>
-            </li>
-          </ul>
-          <div class="note mt-12">
-            <strong>Recomendación</strong>
-            OFF naranja o DEET 20–30%.
-          </div>
-        </div>
-      </div>
+      <div class="card-content"><div class="card-body">
+        <ul class="checklist">
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="repelente-1" onclick="toggleCheck(this)"></div><span class="checklist-text">Comprar repelente en Chile</span></li>
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="repelente-2" onclick="toggleCheck(this)"></div><span class="checklist-text">Guardar en ziplock</span></li>
+          <li class="checklist-item"><div class="checklist-checkbox" data-id="repelente-3" onclick="toggleCheck(this)"></div><span class="checklist-text">Llevar diariamente al parque</span></li>
+        </ul>
+        <div class="note mt-12"><strong>Recomendación</strong>OFF naranja o DEET 20–30%.</div>
+      </div></div>
     </div>
 
     <button class="reset-btn" onclick="resetAll()">🗑️ Resetear todos los pendientes</button>
   </div>
 
-  <!-- INFO VIAJE -->
-  <div class="section" id="section-info">
-    <div class="section-title">ℹ️ Información del viaje</div>
-
-    <!-- Vuelos -->
-    <div class="card">
-      <div class="card-header" onclick="toggleCard(this)">
-        <span class="card-title"><span class="card-icon">✈️</span> Vuelo Ida — Sky Airline</span>
-        <span class="card-badge badge-success">Comprado</span>
-        <span class="card-chevron">▼</span>
-      </div>
-      <div class="card-content">
-        <div class="card-body">
-          <table class="table">
-            <tr><th>Ruta</th><td>Santiago → Puerto Iguazú</td></tr>
-            <tr><th>Horario</th><td>08:00 → 15:30</td></tr>
-            <tr><th>Aerolínea</th><td>Sky Airline</td></tr>
-          </table>
-          <div class="info-block mt-12">
-            <div class="info-label">Consideraciones</div>
-            <div class="info-value">Escala en Aeroparque AEP · Llegada estimada hotel: ~16:15</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header" onclick="toggleCard(this)">
-        <span class="card-title"><span class="card-icon">✈️</span> Vuelo Vuelta — JetSMART</span>
-        <span class="card-badge badge-success">Comprado</span>
-        <span class="card-chevron">▼</span>
-      </div>
-      <div class="card-content">
-        <div class="card-body">
-          <table class="table">
-            <tr><th>IGR → AEP</th><td>21:36 → 23:36</td></tr>
-            <tr><th>AEP → SCL</th><td>05:45 → 07:11</td></tr>
-            <tr><th>Aerolínea</th><td>JetSMART</td></tr>
-          </table>
-          <div class="note mt-12">
-            <strong>Espera nocturna en Aeroparque</strong>
-            Aproximadamente 6 horas. Aeroparque es relativamente seguro, pero incómodo para dormir.
-          </div>
-          <div class="info-block mt-12">
-            <div class="info-label">Llevar para la espera</div>
-            <div class="info-value">Cojín/cuello de viaje · Pantuflas o sandalias cómodas · Polerón · Powerbank · Snacks · Antifaz/tapones</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Hotel -->
-    <div class="card">
-      <div class="card-header" onclick="toggleCard(this)">
-        <span class="card-title"><span class="card-icon">🏨</span> La Aldea De La Selva Lodge</span>
-        <span class="card-badge badge-success">Pagado</span>
-        <span class="card-chevron">▼</span>
-      </div>
-      <div class="card-content">
-        <div class="card-body">
-          <table class="table">
-            <tr><th>Check-in</th><td>Lunes 8 Junio</td></tr>
-            <tr><th>Check-out</th><td>Viernes 12 Junio</td></tr>
-            <tr><th>Habitación</th><td>Doble estándar</td></tr>
-            <tr><th>Incluye</th><td>Desayuno + transfer aeropuerto</td></tr>
-            <tr><th>Condición</th><td>No reembolsable</td></tr>
-          </table>
-          <div class="info-block mt-12">
-            <div class="info-label">Ventajas</div>
-            <div class="info-value">Entorno selvático · Tranquilo · Ideal para descansar · Buena relación calidad/precio</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Parque Nacional -->
-    <div class="card">
-      <div class="card-header" onclick="toggleCard(this)">
-        <span class="card-title"><span class="card-icon">🎟️</span> Entradas Parque Nacional</span>
-        <span class="card-badge badge-success">Compradas</span>
-        <span class="card-chevron">▼</span>
-      </div>
-      <div class="card-content">
-        <div class="card-body">
-          <table class="table">
-            <tr><th>Día 1 · Mar 9</th><td>Entrada completa</td></tr>
-            <tr><th>Día 2 · Mié 10</th><td>50% descuento</td></tr>
-          </table>
-          <div class="info-block mt-12">
-            <div class="info-label">Estrategia elegida</div>
-            <div class="info-value">
-              <strong>Día 1:</strong> Circuito Superior + Inferior + Gran Aventura<br>
-              <strong>Día 2:</strong> Garganta del Diablo + Senderos opcionales + Actividades tranquilas
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Seguro -->
-    <div class="card">
-      <div class="card-header" onclick="toggleCard(this)">
-        <span class="card-title"><span class="card-icon">🛡️</span> Seguro de viaje — IATI Mochilero</span>
-        <span class="card-badge badge-success">Contratado</span>
-        <span class="card-chevron">▼</span>
-      </div>
-      <div class="card-content">
-        <div class="card-body">
-          <div class="info-block">
-            <div class="info-label">Coberturas</div>
-            <div class="info-value">
-              500.000 € asistencia médica<br>
-              Repatriación<br>
-              Equipaje hasta 1.500 €<br>
-              Rescate/búsqueda hasta 15.000 €<br>
-              Retrasos y conexiones<br>
-              Cobertura outdoor
-            </div>
-          </div>
-          <div class="note mt-12">
-            <strong>Importante</strong>
-            Llevar póliza descargada offline, teléfonos de asistencia y respaldo en Google Drive.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Finanzas -->
-    <div class="card">
-      <div class="card-header" onclick="toggleCard(this)">
-        <span class="card-title"><span class="card-icon">💰</span> Estrategia financiera</span>
-        <span class="card-chevron">▼</span>
-      </div>
-      <div class="card-content">
-        <div class="card-body">
-          <table class="table">
-            <tr><th>Tarjetas extranjeras</th><td>Principal</td></tr>
-            <tr><th>Global66</th><td>Respaldo/cotidiano</td></tr>
-            <tr><th>USD efectivo</th><td>Emergencias</td></tr>
-            <tr><th>ATM argentinos</th><td>Evitar</td></tr>
-          </table>
-          <div class="note mt-12">
-            <strong>Importante</strong>
-            Las tarjetas extranjeras aplican tipo de cambio turista/MEP, mucho mejor que el oficial.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Presupuesto -->
-    <div class="card">
-      <div class="card-header" onclick="toggleCard(this)">
-        <span class="card-title"><span class="card-icon">📊</span> Presupuesto</span>
-        <span class="card-chevron">▼</span>
-      </div>
-      <div class="card-content">
-        <div class="card-body">
-          <table class="table">
-            <tr><th>Vuelos</th><td>USD 800</td></tr>
-            <tr><th>Hotel</th><td>USD 390</td></tr>
-            <tr><th>Parque</th><td>USD 80–100</td></tr>
-            <tr><th>Comidas</th><td>USD 220–320</td></tr>
-            <tr><th>Transporte</th><td>USD 40–60</td></tr>
-            <tr><th>eSIM</th><td>USD 8–15</td></tr>
-            <tr><th>Brasil</th><td>USD 40–60</td></tr>
-            <tr><th>Gran Aventura</th><td>USD 170–270</td></tr>
-            <tr><th>Extras</th><td>USD 50–100</td></tr>
-          </table>
-          <div class="info-block mt-12">
-            <div class="info-label">Total sin Gran Aventura</div>
-            <div class="info-value">USD 1.650–1.850</div>
-          </div>
-          <div class="info-block">
-            <div class="info-label">Total con Gran Aventura</div>
-            <div class="info-value">USD 1.850–2.150</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Clima -->
-    <div class="card">
-      <div class="card-header" onclick="toggleCard(this)">
-        <span class="card-title"><span class="card-icon">🌤️</span> Clima en Junio</span>
-        <span class="card-chevron">▼</span>
-      </div>
-      <div class="card-content">
-        <div class="card-body">
-          <div class="info-block">
-            <div class="info-label">Ventajas</div>
-            <div class="info-value">Menos calor · Menos humedad · Menos filas · Caminatas cómodas</div>
-          </div>
-          <div class="info-block mt-8">
-            <div class="info-label">Consideraciones</div>
-            <div class="info-value">Mañanas frescas · Posibles lluvias ligeras · Noches frescas</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Enchufes -->
-    <div class="card">
-      <div class="card-header" onclick="toggleCard(this)">
-        <span class="card-title"><span class="card-icon">🔌</span> Enchufes y Electricidad</span>
-        <span class="card-chevron">▼</span>
-      </div>
-      <div class="card-content">
-        <div class="card-body">
-          <div class="info-block">
-            <div class="info-label">Argentina</div>
-            <div class="info-value">220V · 50Hz · Compatible con Chile</div>
-          </div>
-          <div class="note mt-8">
-            <strong>Recomendación</strong>
-            Llevar adaptador universal pequeño por seguridad.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ITINERARIO -->
+  <!-- ═══ ITINERARIO ═══ -->
   <div class="section" id="section-itinerario">
     <div class="section-title">📅 Itinerario día a día</div>
 
@@ -1181,20 +739,13 @@ header p { font-size: 0.8rem; opacity: 0.9; }
         <span class="card-badge badge-info">Viaje</span>
         <span class="card-chevron">▼</span>
       </div>
-      <div class="card-content">
-        <div class="card-body">
-          <div class="info-block">
-            <div class="info-label">Viaje y llegada</div>
-            <div class="info-value">
-              Vuelo SCL → IGR<br>
-              Transfer hotel<br>
-              Check-in<br>
-              Descanso<br>
-              Cena tranquila
-            </div>
-          </div>
+      <div class="card-content"><div class="card-body">
+        <div class="info-block">
+          <div class="info-label">Viaje y llegada</div>
+          <div class="info-value">Vuelo SCL → IGR<br>Transfer hotel<br>Check-in<br>Descanso<br>Cena tranquila</div>
         </div>
-      </div>
+        <textarea class="day-note" data-day="dia1" placeholder="Notas del día (reservas, taxis, tips...)" oninput="saveNote(this)"></textarea>
+      </div></div>
     </div>
 
     <div class="card">
@@ -1203,22 +754,17 @@ header p { font-size: 0.8rem; opacity: 0.9; }
         <span class="card-badge badge-warning">Parque</span>
         <span class="card-chevron">▼</span>
       </div>
-      <div class="card-content">
-        <div class="card-body">
-          <div class="info-block">
-            <div class="info-label">Circuitos + Gran Aventura</div>
-            <div class="info-value">
-              Circuito Superior<br>
-              Circuito Inferior<br>
-              Gran Aventura
-            </div>
-          </div>
-          <div class="info-block mt-8">
-            <div class="info-label">Llevar</div>
-            <div class="info-value">Ropa impermeable · Funda celular · Powerbank · Repelente</div>
-          </div>
+      <div class="card-content"><div class="card-body">
+        <div class="info-block">
+          <div class="info-label">Circuitos + Gran Aventura</div>
+          <div class="info-value">Circuito Superior<br>Circuito Inferior<br>Gran Aventura</div>
         </div>
-      </div>
+        <div class="info-block mt-8">
+          <div class="info-label">Llevar</div>
+          <div class="info-value">Ropa impermeable · Funda celular · Powerbank · Repelente</div>
+        </div>
+        <textarea class="day-note" data-day="dia2" placeholder="Notas del día..." oninput="saveNote(this)"></textarea>
+      </div></div>
     </div>
 
     <div class="card">
@@ -1227,24 +773,14 @@ header p { font-size: 0.8rem; opacity: 0.9; }
         <span class="card-badge badge-warning">Parque</span>
         <span class="card-chevron">▼</span>
       </div>
-      <div class="card-content">
-        <div class="card-body">
-          <div class="info-block">
-            <div class="info-label">Garganta del Diablo</div>
-            <div class="info-value">
-              Eco Tren<br>
-              Garganta del Diablo<br>
-              Sendero Macuco opcional<br>
-              Hito Tres Fronteras<br>
-              Feria artesanal
-            </div>
-          </div>
-          <div class="note mt-8">
-            <strong>Consejo importante</strong>
-            No perder último Eco Tren.
-          </div>
+      <div class="card-content"><div class="card-body">
+        <div class="info-block">
+          <div class="info-label">Garganta del Diablo</div>
+          <div class="info-value">Eco Tren<br>Garganta del Diablo<br>Sendero Macuco opcional<br>Hito Tres Fronteras<br>Feria artesanal</div>
         </div>
-      </div>
+        <div class="note mt-8"><strong>Consejo importante</strong>No perder último Eco Tren.</div>
+        <textarea class="day-note" data-day="dia3" placeholder="Notas del día..." oninput="saveNote(this)"></textarea>
+      </div></div>
     </div>
 
     <div class="card">
@@ -1253,21 +789,17 @@ header p { font-size: 0.8rem; opacity: 0.9; }
         <span class="card-badge badge-info">Flexible</span>
         <span class="card-chevron">▼</span>
       </div>
-      <div class="card-content">
-        <div class="card-body">
-          <div class="info-block">
-            <div class="info-label">Opción recomendada</div>
-            <div class="info-value">
-              <strong>Lado brasileño</strong><br><br>
-              Vista panorámica completa · Experiencia complementaria · Muy recomendable
-            </div>
-          </div>
-          <div class="info-block mt-8">
-            <div class="info-label">Alternativas</div>
-            <div class="info-value">Relax lodge · Güirá Ogá · Piscina/spa</div>
-          </div>
+      <div class="card-content"><div class="card-body">
+        <div class="info-block">
+          <div class="info-label">Opción recomendada</div>
+          <div class="info-value"><strong>Lado brasileño</strong><br><br>Vista panorámica completa · Experiencia complementaria · Muy recomendable</div>
         </div>
-      </div>
+        <div class="info-block mt-8">
+          <div class="info-label">Alternativas</div>
+          <div class="info-value">Relax lodge · Güirá Ogá · Piscina/spa</div>
+        </div>
+        <textarea class="day-note" data-day="dia4" placeholder="Notas del día..." oninput="saveNote(this)"></textarea>
+      </div></div>
     </div>
 
     <div class="card">
@@ -1276,245 +808,364 @@ header p { font-size: 0.8rem; opacity: 0.9; }
         <span class="card-badge badge-danger">Regreso</span>
         <span class="card-chevron">▼</span>
       </div>
-      <div class="card-content">
-        <div class="card-body">
-          <div class="info-block">
-            <div class="info-label">Regreso</div>
-            <div class="info-value">
-              Check-out<br>
-              Últimas compras<br>
-              Vuelo nocturno<br>
-              Espera en AEP<br>
-              Vuelo madrugada a Santiago (07:11 AM)
-            </div>
-          </div>
+      <div class="card-content"><div class="card-body">
+        <div class="info-block">
+          <div class="info-label">Regreso</div>
+          <div class="info-value">Check-out<br>Últimas compras<br>Vuelo nocturno<br>Espera en AEP<br>Vuelo madrugada a Santiago (07:11 AM)</div>
+        </div>
+        <textarea class="day-note" data-day="dia5" placeholder="Notas del día..." oninput="saveNote(this)"></textarea>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- ═══ GASTOS ═══ -->
+  <div class="section" id="section-gastos">
+    <div class="section-title">💸 Registro de gastos</div>
+
+    <div class="gastos-summary">
+      <div class="gastos-total-row">
+        <span class="gastos-total-label">Total gastado</span>
+        <span class="gastos-total-value" id="gastosTotalValue">USD 0.00</span>
+      </div>
+      <div class="gastos-cats" id="gastosCatGrid"></div>
+    </div>
+
+    <div class="add-gasto-form">
+      <div class="section-title" style="font-size:0.9rem;margin-bottom:10px">➕ Agregar gasto</div>
+      <div class="form-row">
+        <div class="form-field">
+          <label class="form-label">Monto (USD)</label>
+          <input class="form-input" type="number" id="gastoMonto" placeholder="0.00" step="0.01" min="0" inputmode="decimal">
+        </div>
+        <div class="form-field">
+          <label class="form-label">Categoría</label>
+          <select class="form-select" id="gastoCat">
+            <option value="Comida">🍽️ Comida</option>
+            <option value="Actividades">🌊 Actividades</option>
+            <option value="Transporte">🚕 Transporte</option>
+            <option value="Compras">🛍️ Compras</option>
+            <option value="Otros">📦 Otros</option>
+          </select>
         </div>
       </div>
+      <input class="form-input-full" type="text" id="gastoDesc" placeholder="Descripción (opcional)">
+      <button class="btn-primary" onclick="addGasto()">Guardar gasto</button>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <p class="empty-state" id="gastosEmpty">Aún no hay gastos registrados</p>
+        <ul class="gastos-list" id="gastosList"></ul>
+      </div>
     </div>
   </div>
 
-  <!-- PACKING -->
+  <!-- ═══ DOCUMENTOS ═══ -->
+  <div class="section" id="section-docs">
+    <div class="section-title">📄 Documentos</div>
+    <p class="text-muted mb-12">Sube capturas de tus documentos. Se guardan en el dispositivo, sin internet.</p>
+    <div class="docs-grid" id="docsGrid"></div>
+    <div class="note">
+      <strong>Cómo usarlo</strong>
+      Toca "Subir" en cada slot y elige una imagen desde tu galería. Funciona offline una vez guardada. Máx 3 MB por imagen.
+    </div>
+  </div>
+
+  <!-- ═══ INFO VIAJE ═══ -->
+  <div class="section" id="section-info">
+    <div class="section-title">ℹ️ Información del viaje</div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <span class="card-title"><span class="card-icon">✈️</span> Vuelo Ida — Sky Airline</span>
+        <span class="card-badge badge-success">Comprado</span>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-content"><div class="card-body">
+        <table class="table">
+          <tr><th>Ruta</th><td>Santiago → Puerto Iguazú</td></tr>
+          <tr><th>Horario</th><td>08:00 → 15:30</td></tr>
+          <tr><th>Aerolínea</th><td>Sky Airline</td></tr>
+        </table>
+        <div class="info-block mt-12"><div class="info-label">Consideraciones</div><div class="info-value">Escala en Aeroparque AEP · Llegada estimada hotel: ~16:15</div></div>
+      </div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <span class="card-title"><span class="card-icon">✈️</span> Vuelo Vuelta — JetSMART</span>
+        <span class="card-badge badge-success">Comprado</span>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-content"><div class="card-body">
+        <table class="table">
+          <tr><th>IGR → AEP</th><td>21:36 → 23:36</td></tr>
+          <tr><th>AEP → SCL</th><td>05:45 → 07:11</td></tr>
+          <tr><th>Aerolínea</th><td>JetSMART</td></tr>
+        </table>
+        <div class="note mt-12"><strong>Espera nocturna en Aeroparque</strong>Aproximadamente 6 horas. Relativamente seguro pero incómodo para dormir.</div>
+        <div class="info-block mt-12"><div class="info-label">Llevar para la espera</div><div class="info-value">Cojín/cuello de viaje · Pantuflas · Polerón · Powerbank · Snacks · Antifaz/tapones</div></div>
+      </div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <span class="card-title"><span class="card-icon">🏨</span> La Aldea De La Selva Lodge</span>
+        <span class="card-badge badge-success">Pagado</span>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-content"><div class="card-body">
+        <table class="table">
+          <tr><th>Check-in</th><td>Lunes 8 Junio</td></tr>
+          <tr><th>Check-out</th><td>Viernes 12 Junio</td></tr>
+          <tr><th>Habitación</th><td>Doble estándar</td></tr>
+          <tr><th>Incluye</th><td>Desayuno + transfer aeropuerto</td></tr>
+          <tr><th>Condición</th><td>No reembolsable</td></tr>
+        </table>
+        <div class="info-block mt-12"><div class="info-label">Ventajas</div><div class="info-value">Entorno selvático · Tranquilo · Buena relación calidad/precio</div></div>
+      </div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <span class="card-title"><span class="card-icon">🎟️</span> Entradas Parque Nacional</span>
+        <span class="card-badge badge-success">Compradas</span>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-content"><div class="card-body">
+        <table class="table">
+          <tr><th>Día 1 · Mar 9</th><td>Entrada completa</td></tr>
+          <tr><th>Día 2 · Mié 10</th><td>50% descuento</td></tr>
+        </table>
+        <div class="info-block mt-12"><div class="info-label">Estrategia elegida</div><div class="info-value"><strong>Día 1:</strong> Circuito Superior + Inferior + Gran Aventura<br><strong>Día 2:</strong> Garganta del Diablo + Senderos opcionales</div></div>
+      </div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <span class="card-title"><span class="card-icon">🛡️</span> Seguro — IATI Mochilero</span>
+        <span class="card-badge badge-success">Contratado</span>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-content"><div class="card-body">
+        <div class="info-block"><div class="info-label">Coberturas</div><div class="info-value">500.000 € asistencia médica<br>Repatriación<br>Equipaje hasta 1.500 €<br>Rescate/búsqueda hasta 15.000 €<br>Cobertura outdoor</div></div>
+        <div class="note mt-12"><strong>Importante</strong>Llevar póliza descargada offline y teléfonos de asistencia.</div>
+      </div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <span class="card-title"><span class="card-icon">💰</span> Estrategia financiera</span>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-content"><div class="card-body">
+        <table class="table">
+          <tr><th>Tarjetas extranjeras</th><td>Principal</td></tr>
+          <tr><th>Global66</th><td>Respaldo/cotidiano</td></tr>
+          <tr><th>USD efectivo</th><td>Emergencias</td></tr>
+          <tr><th>ATM argentinos</th><td>Evitar</td></tr>
+        </table>
+        <div class="note mt-12"><strong>Importante</strong>Las tarjetas extranjeras aplican tipo de cambio turista/MEP.</div>
+      </div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <span class="card-title"><span class="card-icon">📊</span> Presupuesto</span>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-content"><div class="card-body">
+        <table class="table">
+          <tr><th>Vuelos</th><td>USD 800</td></tr>
+          <tr><th>Hotel</th><td>USD 390</td></tr>
+          <tr><th>Parque</th><td>USD 80–100</td></tr>
+          <tr><th>Comidas</th><td>USD 220–320</td></tr>
+          <tr><th>Transporte</th><td>USD 40–60</td></tr>
+          <tr><th>eSIM</th><td>USD 8–15</td></tr>
+          <tr><th>Brasil</th><td>USD 40–60</td></tr>
+          <tr><th>Gran Aventura</th><td>USD 170–270</td></tr>
+          <tr><th>Extras</th><td>USD 50–100</td></tr>
+        </table>
+        <div class="info-block mt-12"><div class="info-label">Total sin Gran Aventura</div><div class="info-value">USD 1.650–1.850</div></div>
+        <div class="info-block"><div class="info-label">Total con Gran Aventura</div><div class="info-value">USD 1.850–2.150</div></div>
+      </div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <span class="card-title"><span class="card-icon">🌤️</span> Clima en Junio</span>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-content"><div class="card-body">
+        <div class="info-block"><div class="info-label">Ventajas</div><div class="info-value">Menos calor · Menos humedad · Menos filas · Caminatas cómodas</div></div>
+        <div class="info-block mt-8"><div class="info-label">Consideraciones</div><div class="info-value">Mañanas frescas · Posibles lluvias ligeras · Noches frescas</div></div>
+      </div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <span class="card-title"><span class="card-icon">🔌</span> Enchufes y Electricidad</span>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-content"><div class="card-body">
+        <div class="info-block"><div class="info-label">Argentina</div><div class="info-value">220V · 50Hz · Compatible con Chile</div></div>
+        <div class="note mt-8"><strong>Recomendación</strong>Llevar adaptador universal pequeño por seguridad.</div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- ═══ PACKING ═══ -->
   <div class="section" id="section-packing">
     <div class="section-title">🎒 Ropa y equipamiento</div>
-
-    <div class="card">
-      <div class="card-body">
-        <ul class="checklist" data-group="packing">
-          <li class="checklist-item">
-            <div class="checklist-checkbox" data-id="packing-1" onclick="toggleCheck(this)"></div>
-            <span class="checklist-text">Zapatillas cómodas</span>
-          </li>
-          <li class="checklist-item">
-            <div class="checklist-checkbox" data-id="packing-2" onclick="toggleCheck(this)"></div>
-            <span class="checklist-text">Ropa respirable</span>
-          </li>
-          <li class="checklist-item">
-            <div class="checklist-checkbox" data-id="packing-3" onclick="toggleCheck(this)"></div>
-            <span class="checklist-text">Abrigo ligero</span>
-          </li>
-          <li class="checklist-item">
-            <div class="checklist-checkbox" data-id="packing-4" onclick="toggleCheck(this)"></div>
-            <span class="checklist-text">Polerón</span>
-          </li>
-          <li class="checklist-item">
-            <div class="checklist-checkbox" data-id="packing-5" onclick="toggleCheck(this)"></div>
-            <span class="checklist-text">Poncho impermeable</span>
-          </li>
-          <li class="checklist-item">
-            <div class="checklist-checkbox" data-id="packing-6" onclick="toggleCheck(this)"></div>
-            <span class="checklist-text">Powerbank</span>
-          </li>
-          <li class="checklist-item">
-            <div class="checklist-checkbox" data-id="packing-7" onclick="toggleCheck(this)"></div>
-            <span class="checklist-text">Botella reutilizable</span>
-          </li>
-          <li class="checklist-item">
-            <div class="checklist-checkbox" data-id="packing-8" onclick="toggleCheck(this)"></div>
-            <span class="checklist-text">Repelente</span>
-          </li>
-          <li class="checklist-item">
-            <div class="checklist-checkbox" data-id="packing-9" onclick="toggleCheck(this)"></div>
-            <span class="checklist-text">Bolsa impermeable celular</span>
-          </li>
-          <li class="checklist-item">
-            <div class="checklist-checkbox" data-id="packing-10" onclick="toggleCheck(this)"></div>
-            <span class="checklist-text">Cojín/cuello viaje</span>
-          </li>
-          <li class="checklist-item">
-            <div class="checklist-checkbox" data-id="packing-11" onclick="toggleCheck(this)"></div>
-            <span class="checklist-text">Pantuflas o sandalias cómodas</span>
-          </li>
-          <li class="checklist-item">
-            <div class="checklist-checkbox" data-id="packing-12" onclick="toggleCheck(this)"></div>
-            <span class="checklist-text">Antifaz/tapones</span>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <div class="card"><div class="card-body">
+      <ul class="checklist">
+        <li class="checklist-item"><div class="checklist-checkbox" data-id="packing-1" onclick="toggleCheck(this)"></div><span class="checklist-text">Zapatillas cómodas</span></li>
+        <li class="checklist-item"><div class="checklist-checkbox" data-id="packing-2" onclick="toggleCheck(this)"></div><span class="checklist-text">Ropa respirable</span></li>
+        <li class="checklist-item"><div class="checklist-checkbox" data-id="packing-3" onclick="toggleCheck(this)"></div><span class="checklist-text">Abrigo ligero</span></li>
+        <li class="checklist-item"><div class="checklist-checkbox" data-id="packing-4" onclick="toggleCheck(this)"></div><span class="checklist-text">Polerón</span></li>
+        <li class="checklist-item"><div class="checklist-checkbox" data-id="packing-5" onclick="toggleCheck(this)"></div><span class="checklist-text">Poncho impermeable</span></li>
+        <li class="checklist-item"><div class="checklist-checkbox" data-id="packing-6" onclick="toggleCheck(this)"></div><span class="checklist-text">Powerbank</span></li>
+        <li class="checklist-item"><div class="checklist-checkbox" data-id="packing-7" onclick="toggleCheck(this)"></div><span class="checklist-text">Botella reutilizable</span></li>
+        <li class="checklist-item"><div class="checklist-checkbox" data-id="packing-8" onclick="toggleCheck(this)"></div><span class="checklist-text">Repelente</span></li>
+        <li class="checklist-item"><div class="checklist-checkbox" data-id="packing-9" onclick="toggleCheck(this)"></div><span class="checklist-text">Bolsa impermeable celular</span></li>
+        <li class="checklist-item"><div class="checklist-checkbox" data-id="packing-10" onclick="toggleCheck(this)"></div><span class="checklist-text">Cojín/cuello viaje</span></li>
+        <li class="checklist-item"><div class="checklist-checkbox" data-id="packing-11" onclick="toggleCheck(this)"></div><span class="checklist-text">Pantuflas o sandalias cómodas</span></li>
+        <li class="checklist-item"><div class="checklist-checkbox" data-id="packing-12" onclick="toggleCheck(this)"></div><span class="checklist-text">Antifaz/tapones</span></li>
+      </ul>
+    </div></div>
   </div>
 
-  <!-- LINKS -->
+  <!-- ═══ LINKS ═══ -->
   <div class="section" id="section-links">
     <div class="section-title">🔗 Links útiles</div>
-
-    <div class="card">
-      <div class="card-body">
-        <ul class="link-list">
-          <a href="https://tickets.iguazuargentina.com" target="_blank" rel="noopener" class="link-item">
-            <div>
-              <div class="link-label">🎟️ Parque Nacional</div>
-              <div class="link-url">tickets.iguazuargentina.com</div>
-            </div>
-            <span class="link-arrow">→</span>
-          </a>
-          <a href="https://iguazujungle.com" target="_blank" rel="noopener" class="link-item">
-            <div>
-              <div class="link-label">🌊 Gran Aventura</div>
-              <div class="link-url">iguazujungle.com</div>
-            </div>
-            <span class="link-arrow">→</span>
-          </a>
-          <a href="https://skyairline.com" target="_blank" rel="noopener" class="link-item">
-            <div>
-              <div class="link-label">✈️ Sky Airline</div>
-              <div class="link-url">skyairline.com</div>
-            </div>
-            <span class="link-arrow">→</span>
-          </a>
-          <a href="https://jetsmart.com" target="_blank" rel="noopener" class="link-item">
-            <div>
-              <div class="link-label">✈️ JetSMART</div>
-              <div class="link-url">jetsmart.com</div>
-            </div>
-            <span class="link-arrow">→</span>
-          </a>
-          <a href="https://iatiseguros.com" target="_blank" rel="noopener" class="link-item">
-            <div>
-              <div class="link-label">🛡️ IATI Seguros</div>
-              <div class="link-url">iatiseguros.com</div>
-            </div>
-            <span class="link-arrow">→</span>
-          </a>
-          <a href="https://airalo.com" target="_blank" rel="noopener" class="link-item">
-            <div>
-              <div class="link-label">📶 Airalo eSIM</div>
-              <div class="link-url">airalo.com</div>
-            </div>
-            <span class="link-arrow">→</span>
-          </a>
-          <a href="https://global66.com" target="_blank" rel="noopener" class="link-item">
-            <div>
-              <div class="link-label">💳 Global66</div>
-              <div class="link-url">global66.com</div>
-            </div>
-            <span class="link-arrow">→</span>
-          </a>
-        </ul>
-      </div>
-    </div>
+    <div class="card"><div class="card-body">
+      <ul class="link-list">
+        <a href="https://tickets.iguazuargentina.com" target="_blank" rel="noopener" class="link-item">
+          <div><div class="link-label">🎟️ Parque Nacional</div><div class="link-url">tickets.iguazuargentina.com</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="https://iguazujungle.com" target="_blank" rel="noopener" class="link-item">
+          <div><div class="link-label">🌊 Gran Aventura</div><div class="link-url">iguazujungle.com</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="https://skyairline.com" target="_blank" rel="noopener" class="link-item">
+          <div><div class="link-label">✈️ Sky Airline</div><div class="link-url">skyairline.com</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="https://jetsmart.com" target="_blank" rel="noopener" class="link-item">
+          <div><div class="link-label">✈️ JetSMART</div><div class="link-url">jetsmart.com</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="https://iatiseguros.com" target="_blank" rel="noopener" class="link-item">
+          <div><div class="link-label">🛡️ IATI Seguros</div><div class="link-url">iatiseguros.com</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="https://airalo.com" target="_blank" rel="noopener" class="link-item">
+          <div><div class="link-label">📶 Airalo eSIM</div><div class="link-url">airalo.com</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="https://global66.com" target="_blank" rel="noopener" class="link-item">
+          <div><div class="link-label">💳 Global66</div><div class="link-url">global66.com</div></div>
+          <span class="link-arrow">→</span>
+        </a>
+      </ul>
+    </div></div>
   </div>
 
-</div>
+</div><!-- /container -->
 
-<!-- Emergency Mode -->
+<!-- ═══ EMERGENCY OVERLAY ═══ -->
 <div class="emergency-overlay" id="emergencyOverlay">
   <div class="emergency-header">
     <span class="emergency-title">🚨 Modo Emergencia</span>
     <button class="emergency-close" onclick="toggleEmergency()">✕</button>
   </div>
-
   <div class="emergency-card">
     <h3>✈️ Vuelo Ida — Sky Airline</h3>
     <p>SCL → IGR · 08:00 → 15:30</p>
     <p>Llegada hotel estimada: ~16:15</p>
   </div>
-
   <div class="emergency-card">
     <h3>✈️ Vuelo Vuelta — JetSMART</h3>
     <p>IGR → AEP: 21:36 → 23:36</p>
     <p>AEP → SCL: 05:45 → 07:11</p>
   </div>
-
   <div class="emergency-card">
-    <h3>🏨 Hotel — La Aldea De La Selva Lodge</h3>
-    <p>Check-in: Lunes 8 Junio</p>
-    <p>Check-out: Viernes 12 Junio</p>
-    <p>Habitación doble estándar · Incluye desayuno + transfer</p>
+    <h3>🏨 La Aldea De La Selva Lodge</h3>
+    <p>Check-in: Lunes 8 Junio · Check-out: Viernes 12 Junio</p>
+    <p>Doble estándar · Desayuno + transfer incluido</p>
   </div>
-
   <div class="emergency-card">
-    <h3>🛡️ Seguro — IATI Mochilero</h3>
-    <p>500.000 € asistencia médica</p>
-    <p>Repatriación · Equipaje · Rescate</p>
-    <p class="text-muted mt-8">Llevar póliza descargada offline</p>
+    <h3>🛡️ Seguro IATI Mochilero</h3>
+    <p>500.000 € asistencia médica · Repatriación · Equipaje · Rescate</p>
+    <p>Llevar póliza offline y teléfonos de asistencia</p>
   </div>
-
   <div class="emergency-card">
     <h3>📍 Datos clave</h3>
     <p>Aeropuerto: IGR (Puerto Iguazú)</p>
-    <p>Moneda: ARS (llevar USD emergencia)</p>
+    <p>Moneda: ARS · llevar USD emergencia</p>
     <p>Electricidad: 220V 50Hz (compatible Chile)</p>
   </div>
 </div>
 
-<!-- Bottom Navigation -->
+<!-- ═══ DOC VIEWER ═══ -->
+<div class="doc-viewer-overlay" id="docViewerOverlay">
+  <div class="doc-viewer-header">
+    <span class="doc-viewer-title" id="docViewerTitle"></span>
+    <button class="doc-viewer-close" onclick="closeDocViewer()">✕</button>
+  </div>
+  <img class="doc-viewer-img" id="docViewerImg" src="" alt="">
+</div>
+
+<!-- ═══ BOTTOM NAV ═══ -->
 <nav class="bottom-nav">
   <button class="bottom-btn active" data-section="dashboard">
-    <span class="bottom-btn-icon">🏠</span>
-    <span>Inicio</span>
+    <span class="bottom-btn-icon">🏠</span><span>Inicio</span>
   </button>
   <button class="bottom-btn" data-section="pendientes">
-    <span class="bottom-btn-icon">📋</span>
-    <span>Pendientes</span>
-  </button>
-  <button class="bottom-btn" data-section="info">
-    <span class="bottom-btn-icon">ℹ️</span>
-    <span>Info</span>
+    <span class="bottom-btn-icon">📋</span><span>Pendientes</span>
   </button>
   <button class="bottom-btn" data-section="itinerario">
-    <span class="bottom-btn-icon">📅</span>
-    <span>Itinerario</span>
+    <span class="bottom-btn-icon">📅</span><span>Itinerario</span>
   </button>
-  <button class="bottom-btn" data-section="packing">
-    <span class="bottom-btn-icon">🎒</span>
-    <span>Packing</span>
+  <button class="bottom-btn" data-section="gastos">
+    <span class="bottom-btn-icon">💸</span><span>Gastos</span>
   </button>
-  <button class="bottom-btn" data-section="links">
-    <span class="bottom-btn-icon">🔗</span>
-    <span>Links</span>
+  <button class="bottom-btn" data-section="docs">
+    <span class="bottom-btn-icon">📄</span><span>Docs</span>
+  </button>
+  <button class="bottom-btn" data-section="info">
+    <span class="bottom-btn-icon">ℹ️</span><span>Info</span>
   </button>
 </nav>
 
 <script>
-// State management
+// ── Storage Keys ──────────────────────────────────────────────────
 const STORAGE_KEY = 'iguazu2026_checks';
-const THEME_KEY = 'iguazu2026_theme';
+const THEME_KEY   = 'iguazu2026_theme';
+const NOTES_KEY   = 'iguazu2026_notes';
+const GASTOS_KEY  = 'iguazu2026_gastos';
+const DOCS_KEY    = 'iguazu2026_docs';
 
+// ── Checklist ─────────────────────────────────────────────────────
 function loadState() {
-  try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-  } catch { return {}; }
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; }
 }
-
-function saveState(state) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-}
+function saveState(s) { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); }
 
 function toggleCheck(el) {
-  const id = el.dataset.id;
-  const state = loadState();
-  state[id] = !state[id];
-  saveState(state);
+  const s = loadState();
+  s[el.dataset.id] = !s[el.dataset.id];
+  saveState(s);
   el.classList.toggle('checked');
-  const text = el.nextElementSibling;
-  text.classList.toggle('completed');
+  el.nextElementSibling.classList.toggle('completed');
   updateProgress();
 }
 
 function restoreState() {
-  const state = loadState();
+  const s = loadState();
   document.querySelectorAll('.checklist-checkbox').forEach(cb => {
-    if (state[cb.dataset.id]) {
+    if (s[cb.dataset.id]) {
       cb.classList.add('checked');
       cb.nextElementSibling.classList.add('completed');
     }
@@ -1523,44 +1174,37 @@ function restoreState() {
 }
 
 function updateProgress() {
-  const state = loadState();
-  const total = document.querySelectorAll('.checklist-checkbox').length;
-  const checked = Object.values(state).filter(Boolean).length;
-  const percent = total > 0 ? Math.round((checked / total) * 100) : 0;
-  document.getElementById('progressPercent').textContent = percent + '%';
-  document.getElementById('progressFill').style.width = percent + '%';
+  const s = loadState();
+  const total   = document.querySelectorAll('.checklist-checkbox').length;
+  const checked = Object.values(s).filter(Boolean).length;
+  const pct = total ? Math.round(checked / total * 100) : 0;
+  document.getElementById('progressPercent').textContent = pct + '%';
+  document.getElementById('progressFill').style.width = pct + '%';
 }
 
 function resetAll() {
-  if (confirm('¿Resetear todos los pendientes? Esta acción no se puede deshacer.')) {
-    localStorage.removeItem(STORAGE_KEY);
-    document.querySelectorAll('.checklist-checkbox').forEach(cb => {
-      cb.classList.remove('checked');
-      cb.nextElementSibling.classList.remove('completed');
-    });
-    updateProgress();
-  }
-}
-
-// Navigation
-function switchSection(sectionId) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.bottom-btn').forEach(b => b.classList.remove('active'));
-
-  const section = document.getElementById('section-' + sectionId);
-  if (section) section.classList.add('active');
-
-  document.querySelectorAll(`[data-section="${sectionId}"]`).forEach(el => {
-    el.classList.add('active');
+  if (!confirm('¿Resetear todos los pendientes?')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  document.querySelectorAll('.checklist-checkbox').forEach(cb => {
+    cb.classList.remove('checked');
+    cb.nextElementSibling.classList.remove('completed');
   });
+  updateProgress();
 }
 
-document.querySelectorAll('.nav-tab, .bottom-btn').forEach(btn => {
-  btn.addEventListener('click', () => switchSection(btn.dataset.section));
-});
+// ── Navigation ────────────────────────────────────────────────────
+function switchSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab, .bottom-btn').forEach(b => b.classList.remove('active'));
+  const sec = document.getElementById('section-' + id);
+  if (sec) sec.classList.add('active');
+  document.querySelectorAll('[data-section="' + id + '"]').forEach(el => el.classList.add('active'));
+}
+document.querySelectorAll('.nav-tab, .bottom-btn').forEach(btn =>
+  btn.addEventListener('click', () => switchSection(btn.dataset.section))
+);
 
-// Card accordion
+// ── Card accordion ────────────────────────────────────────────────
 function toggleCard(header) {
   const content = header.nextElementSibling;
   const chevron = header.querySelector('.card-chevron');
@@ -1569,98 +1213,306 @@ function toggleCard(header) {
   if (chevron) chevron.classList.toggle('rotated');
 }
 
-// Theme
+// ── Theme ─────────────────────────────────────────────────────────
 function toggleTheme() {
-  const current = document.documentElement.getAttribute('data-theme');
-  const next = current === 'dark' ? 'light' : 'dark';
+  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
   document.documentElement.setAttribute('data-theme', next);
   localStorage.setItem(THEME_KEY, next);
   document.getElementById('themeBtn').textContent = next === 'dark' ? '☀️' : '🌙';
 }
-
 function loadTheme() {
-  const saved = localStorage.getItem(THEME_KEY) || 'light';
-  document.documentElement.setAttribute('data-theme', saved);
-  document.getElementById('themeBtn').textContent = saved === 'dark' ? '☀️' : '🌙';
+  const t = localStorage.getItem(THEME_KEY) || 'light';
+  document.documentElement.setAttribute('data-theme', t);
+  document.getElementById('themeBtn').textContent = t === 'dark' ? '☀️' : '🌙';
 }
 
-// Emergency mode
+// ── Emergency ─────────────────────────────────────────────────────
 function toggleEmergency() {
   document.getElementById('emergencyOverlay').classList.toggle('active');
 }
 
-// Install prompt
+// ── Install ───────────────────────────────────────────────────────
 let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e) => {
+window.addEventListener('beforeinstallprompt', e => {
   e.preventDefault();
   deferredPrompt = e;
   document.getElementById('installBanner').classList.add('visible');
 });
-
 function installApp() {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(() => {
-      deferredPrompt = null;
-      document.getElementById('installBanner').classList.remove('visible');
-    });
-  }
-}
-
-// Service Worker registration
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  deferredPrompt.userChoice.then(() => {
+    deferredPrompt = null;
+    document.getElementById('installBanner').classList.remove('visible');
   });
 }
 
-// Countdown logic
-const TRIP_START = new Date(2026, 5, 8);  // 2026-06-08
-const TRIP_END = new Date(2026, 5, 12);   // 2026-06-12
+// ── Service Worker ────────────────────────────────────────────────
+if ('serviceWorker' in navigator)
+  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
 
-function getCountdownState(referenceDate) {
-  const now = referenceDate || new Date();
-  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+// ── Countdown ─────────────────────────────────────────────────────
+const TRIP_START = new Date(2026, 5, 8);
+const TRIP_END   = new Date(2026, 5, 12);
 
-  if (today < TRIP_START) {
-    const diffMs = TRIP_START.getTime() - today.getTime();
-    const daysRemaining = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
-    return { phase: 'pre', daysRemaining: daysRemaining };
-  }
-
-  if (today <= TRIP_END) {
-    return { phase: 'in-progress' };
-  }
-
+function getCountdownState(ref) {
+  const today = (d => new Date(d.getFullYear(), d.getMonth(), d.getDate()))(ref || new Date());
+  if (today < TRIP_START) return { phase: 'pre', days: Math.ceil((TRIP_START - today) / 86400000) };
+  if (today <= TRIP_END)  return { phase: 'during' };
   return { phase: 'post' };
 }
 
 function renderCountdown() {
-  const state = getCountdownState();
-  const label = document.getElementById('countdownLabel');
-  const value = document.getElementById('countdownValue');
-  const sub = document.getElementById('countdownSub');
+  const cs   = getCountdownState();
   const card = document.getElementById('countdownCard');
-
-  if (state.phase === 'pre') {
-    label.textContent = 'Faltan';
-    value.textContent = state.daysRemaining + ' d\xedas';
-    sub.textContent = '8 de Junio 2026 \u00B7 Cataratas del Iguaz\xfa';
+  if (cs.phase === 'pre') {
+    document.getElementById('countdownLabel').textContent = 'Faltan';
+    document.getElementById('countdownValue').textContent = cs.days + ' días';
+    document.getElementById('countdownSub').textContent   = '8 de Junio 2026 · Cataratas del Iguazú';
     card.style.display = '';
-  } else if (state.phase === 'in-progress') {
-    label.textContent = '';
-    value.textContent = '\xa1Est\xe1s en Iguaz\xfa!';
-    sub.textContent = '8 \u2013 12 Junio 2026';
+  } else if (cs.phase === 'during') {
+    document.getElementById('countdownLabel').textContent = '';
+    document.getElementById('countdownValue').textContent = '¡Estás en Iguazú!';
+    document.getElementById('countdownSub').textContent   = '8 – 12 Junio 2026';
     card.style.display = '';
   } else {
     card.style.display = 'none';
   }
 }
 
-// Init
+// ── F1: Clocks ────────────────────────────────────────────────────
+const DAYS_ES   = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+const MONTHS_ES = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+
+function formatTime(d) {
+  const h = String(d.getHours()).padStart(2,'0');
+  const m = String(d.getMinutes()).padStart(2,'0');
+  return h + ':' + m;
+}
+function formatDateShort(d) {
+  return DAYS_ES[d.getDay()] + ' ' + d.getDate() + ' ' + MONTHS_ES[d.getMonth()];
+}
+function updateClocks() {
+  const now = new Date();
+  const toCL = d => new Date(d.toLocaleString('en-US', { timeZone: 'America/Santiago' }));
+  const toAR = d => new Date(d.toLocaleString('en-US', { timeZone: 'America/Argentina/Buenos_Aires' }));
+  const cl = toCL(now), ar = toAR(now);
+  document.getElementById('clockCL').textContent     = formatTime(cl);
+  document.getElementById('clockCLDate').textContent = formatDateShort(cl);
+  document.getElementById('clockAR').textContent     = formatTime(ar);
+  document.getElementById('clockARDate').textContent = formatDateShort(ar);
+}
+
+// ── F2: Qué hago hoy ──────────────────────────────────────────────
+const HOY_DATA = [
+  { date: new Date(2026,5,8),  title: 'Día 1 — Lunes 8 Jun · Viaje y llegada',
+    items: ['Vuelo SCL → IGR (08:00 → 15:30)','Transfer al hotel','Check-in La Aldea','Descanso','Cena tranquila'] },
+  { date: new Date(2026,5,9),  title: 'Día 2 — Martes 9 Jun · Parque',
+    items: ['Circuito Superior','Circuito Inferior','Gran Aventura','Llevar funda impermeable y repelente'] },
+  { date: new Date(2026,5,10), title: 'Día 3 — Miércoles 10 Jun · Parque',
+    items: ['Eco Tren → Garganta del Diablo','Sendero Macuco (opcional)','Hito Tres Fronteras','No perder el último Eco Tren'] },
+  { date: new Date(2026,5,11), title: 'Día 4 — Jueves 11 Jun · Flexible',
+    items: ['Lado brasileño (recomendado)','O relax en el lodge','Güirá Ogá / piscina'] },
+  { date: new Date(2026,5,12), title: 'Día 5 — Viernes 12 Jun · Regreso',
+    items: ['Check-out','Últimas compras','Vuelo IGR → AEP (21:36)','Espera nocturna en Aeroparque','Vuelo AEP → SCL (05:45)'] },
+];
+
+function renderHoy() {
+  const now   = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const found = HOY_DATA.find(d => d.date.getTime() === today.getTime());
+  const card  = document.getElementById('hoyCard');
+  if (!found) { card.style.display = 'none'; return; }
+  card.style.display = '';
+  document.getElementById('hoyDayTitle').textContent = found.title;
+  const ul = document.getElementById('hoyItems');
+  ul.innerHTML = '';
+  found.items.forEach(item => {
+    const li = document.createElement('li');
+    li.className = 'hoy-item';
+    li.textContent = item;
+    ul.appendChild(li);
+  });
+}
+
+// ── F3: Notas por día ─────────────────────────────────────────────
+function loadNotes() {
+  try { return JSON.parse(localStorage.getItem(NOTES_KEY)) || {}; } catch { return {}; }
+}
+function saveNote(el) {
+  const notes = loadNotes();
+  notes[el.dataset.day] = el.value;
+  localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
+}
+function restoreNotes() {
+  const notes = loadNotes();
+  document.querySelectorAll('.day-note').forEach(ta => {
+    if (notes[ta.dataset.day]) ta.value = notes[ta.dataset.day];
+  });
+}
+
+// ── F4: Gastos ────────────────────────────────────────────────────
+const CAT_ICONS = { Comida:'🍽️', Actividades:'🌊', Transporte:'🚕', Compras:'🛍️', Otros:'📦' };
+
+function loadGastos() {
+  try { return JSON.parse(localStorage.getItem(GASTOS_KEY)) || []; } catch { return []; }
+}
+function saveGastos(list) { localStorage.setItem(GASTOS_KEY, JSON.stringify(list)); }
+
+function addGasto() {
+  const montoEl = document.getElementById('gastoMonto');
+  const monto   = parseFloat(montoEl.value);
+  if (!monto || monto <= 0) { montoEl.focus(); return; }
+  const cat  = document.getElementById('gastoCat').value;
+  const desc = document.getElementById('gastoDesc').value.trim() || cat;
+  const list = loadGastos();
+  const fecha = new Date().toLocaleDateString('es-CL', { day: '2-digit', month: 'short' });
+  list.push({ id: Date.now(), monto, cat, desc, fecha });
+  saveGastos(list);
+  montoEl.value = '';
+  document.getElementById('gastoDesc').value = '';
+  renderGastos();
+}
+
+function deleteGasto(id) {
+  saveGastos(loadGastos().filter(g => g.id !== id));
+  renderGastos();
+}
+
+function renderGastos() {
+  const list  = loadGastos();
+  const total = list.reduce((s, g) => s + g.monto, 0);
+  document.getElementById('gastosTotalValue').textContent = 'USD ' + total.toFixed(2);
+
+  const cats = {};
+  list.forEach(g => { cats[g.cat] = (cats[g.cat] || 0) + g.monto; });
+  const grid = document.getElementById('gastosCatGrid');
+  grid.innerHTML = '';
+  Object.entries(cats).forEach(([c, v]) => {
+    const div = document.createElement('div');
+    div.className = 'gastos-cat';
+    div.innerHTML = '<span class="gastos-cat-name">' + (CAT_ICONS[c] || '') + ' ' + esc(c) + '</span>'
+                  + '<span class="gastos-cat-val">$' + v.toFixed(0) + '</span>';
+    grid.appendChild(div);
+  });
+
+  const ul    = document.getElementById('gastosList');
+  const empty = document.getElementById('gastosEmpty');
+  ul.innerHTML = '';
+  if (!list.length) { empty.style.display = ''; return; }
+  empty.style.display = 'none';
+  [...list].reverse().forEach(g => {
+    const li = document.createElement('li');
+    li.className = 'gasto-item';
+    li.innerHTML =
+      '<div class="gasto-info">'
+      + '<div class="gasto-desc">' + esc(g.desc) + '</div>'
+      + '<div class="gasto-meta">' + (CAT_ICONS[g.cat] || '') + ' ' + esc(g.cat) + ' · ' + esc(g.fecha) + '</div>'
+      + '</div>'
+      + '<span class="gasto-amount">$' + g.monto.toFixed(2) + '</span>'
+      + '<button class="gasto-delete" onclick="deleteGasto(' + g.id + ')" aria-label="Eliminar">✕</button>';
+    ul.appendChild(li);
+  });
+}
+
+// ── F5: Documentos ────────────────────────────────────────────────
+const DOC_SLOTS = [
+  { id: 'sky',    icon: '✈️', name: 'Boarding Pass\nSky Airline' },
+  { id: 'jet',    icon: '✈️', name: 'Boarding Pass\nJetSMART' },
+  { id: 'parque', icon: '🎟️', name: 'Entradas\nParque Nacional' },
+  { id: 'seguro', icon: '🛡️', name: 'Póliza\nIATI Seguros' },
+  { id: 'hotel',  icon: '🏨', name: 'Voucher\nHotel' },
+  { id: 'otro',   icon: '📄', name: 'Otro\nDocumento' },
+];
+
+function loadDocs() {
+  try { return JSON.parse(localStorage.getItem(DOCS_KEY)) || {}; } catch { return {}; }
+}
+function saveDocs(d) { localStorage.setItem(DOCS_KEY, JSON.stringify(d)); }
+
+function renderDocs() {
+  const docs = loadDocs();
+  const grid = document.getElementById('docsGrid');
+  grid.innerHTML = '';
+  DOC_SLOTS.forEach(slot => {
+    const doc = docs[slot.id];
+    const div = document.createElement('div');
+    div.className = 'doc-slot' + (doc ? ' has-doc' : '');
+    const nameHtml = slot.name.replace('\n', '<br>');
+    if (doc) {
+      div.innerHTML =
+        '<button class="doc-delete-btn" onclick="deleteDoc(\'' + slot.id + '\')" aria-label="Eliminar">✕</button>'
+        + '<span class="doc-slot-icon">' + slot.icon + '</span>'
+        + '<span class="doc-slot-name">' + nameHtml + '</span>'
+        + '<span class="doc-filename">' + esc(doc.name) + '</span>'
+        + '<button class="doc-view-btn" onclick="viewDoc(\'' + slot.id + '\')">Ver documento</button>';
+    } else {
+      div.innerHTML =
+        '<span class="doc-slot-icon" style="opacity:0.35">' + slot.icon + '</span>'
+        + '<span class="doc-slot-name">' + nameHtml + '</span>'
+        + '<label class="doc-upload-label">Subir'
+        + '<input type="file" class="doc-upload-input" accept="image/*" onchange="uploadDoc(event,\'' + slot.id + '\')">'
+        + '</label>';
+    }
+    grid.appendChild(div);
+  });
+}
+
+function uploadDoc(event, slotId) {
+  const file = event.target.files[0];
+  if (!file) return;
+  if (file.size > 3 * 1024 * 1024) {
+    alert('El archivo es demasiado grande (máx 3 MB). Usa una captura de pantalla.');
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const docs = loadDocs();
+    docs[slotId] = { name: file.name, data: e.target.result };
+    try { saveDocs(docs); } catch { alert('Sin espacio disponible. Elimina otros documentos primero.'); return; }
+    renderDocs();
+  };
+  reader.readAsDataURL(file);
+}
+
+function deleteDoc(slotId) {
+  if (!confirm('¿Eliminar este documento?')) return;
+  const docs = loadDocs();
+  delete docs[slotId];
+  saveDocs(docs);
+  renderDocs();
+}
+
+function viewDoc(slotId) {
+  const doc  = loadDocs()[slotId];
+  if (!doc) return;
+  const slot = DOC_SLOTS.find(s => s.id === slotId);
+  document.getElementById('docViewerTitle').textContent = slot ? slot.name.replace('\n', ' ') : 'Documento';
+  const img = document.getElementById('docViewerImg');
+  img.src = doc.data;
+  img.alt = doc.name;
+  document.getElementById('docViewerOverlay').classList.add('active');
+}
+
+function closeDocViewer() {
+  document.getElementById('docViewerOverlay').classList.remove('active');
+}
+
+// ── Helpers ───────────────────────────────────────────────────────
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── Init ──────────────────────────────────────────────────────────
 loadTheme();
 restoreState();
+restoreNotes();
 renderCountdown();
+renderGastos();
+renderDocs();
+renderHoy();
+updateClocks();
+setInterval(updateClocks, 60000);
 </script>
 </body>
 </html>
