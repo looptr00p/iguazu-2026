@@ -521,13 +521,66 @@ header p { font-size: 0.8rem; opacity: 0.9; }
   flex-shrink: 0;
 }
 .update-banner-btn:active { opacity: 0.85; }
+
+/* ── Converter ───────────────────────────────────────────────── */
+.converter-card {
+  background: var(--bg-card); border-radius: var(--radius);
+  padding: 16px; box-shadow: var(--shadow); margin-bottom: 12px;
+}
+.converter-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 12px; color: var(--primary); }
+.converter-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+.converter-field { display: flex; flex-direction: column; gap: 4px; }
+.converter-label { font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); text-align: center; }
+.converter-input {
+  background: var(--bg-card-alt); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 8px 4px;
+  font-size: 1rem; font-weight: 700; color: var(--text);
+  font-family: inherit; text-align: center; width: 100%;
+}
+.converter-input:focus { outline: none; border-color: var(--primary); }
+.converter-rates-toggle {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 0.8rem; color: var(--text-secondary); cursor: pointer;
+  padding-top: 8px; border-top: 1px solid var(--border); user-select: none;
+}
+.converter-rates-date { font-size: 0.68rem; color: var(--text-muted); flex: 1; }
+.converter-rates-form { margin-top: 10px; }
+.converter-api-note { font-size: 0.72rem; color: var(--text-muted); margin-top: 8px; text-align: center; }
+
+/* ── Status data input ───────────────────────────────────────── */
+.status-data-input {
+  background: none; border: none;
+  border-top: 1px solid var(--border);
+  padding: 4px 0 0; font-size: 0.7rem;
+  color: var(--text-secondary); font-family: inherit;
+  width: 100%; margin-top: 4px;
+}
+.status-data-input:focus { outline: none; border-top-color: var(--primary); color: var(--text); }
+.status-data-input::placeholder { color: var(--text-muted); }
+
+/* ── Mapa ────────────────────────────────────────────────────── */
+.map-svg-wrapper { border-radius: var(--radius); overflow: hidden; margin-bottom: 12px; box-shadow: var(--shadow); }
+.locations-list { list-style: none; }
+.location-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 0; border-bottom: 1px solid var(--border); gap: 8px;
+}
+.location-item:last-child { border-bottom: none; }
+.location-info { flex: 1; min-width: 0; }
+.location-name { font-size: 0.875rem; font-weight: 600; }
+.location-coords { font-size: 0.7rem; color: var(--text-muted); margin-top: 1px; }
+.location-btn {
+  background: var(--primary-bg); color: var(--primary); border: none;
+  border-radius: 20px; padding: 5px 12px; font-size: 0.75rem; font-weight: 600;
+  cursor: pointer; white-space: nowrap; flex-shrink: 0; text-decoration: none;
+}
 </style>
 </head>
 <body>
 
 <header>
   <h1>Cataratas del Iguazú 2026</h1>
-  <p>8 – 12 Junio · Nicolás & Melannie &nbsp;<span id="appVersionBadge" style="font-size:0.68rem;opacity:0.65;letter-spacing:0.3px">v1.3</span></p>
+  <p>8 – 12 Junio · Nicolás & Melannie &nbsp;<span id="appVersionBadge" style="font-size:0.68rem;opacity:0.65;letter-spacing:0.3px">v1.4</span></p>
   <div class="header-actions">
     <button class="header-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
     <button class="header-btn" onclick="toggleEmergency()">🚨</button>
@@ -541,6 +594,7 @@ header p { font-size: 0.8rem; opacity: 0.9; }
   <button class="nav-tab" data-section="gastos">Gastos</button>
   <button class="nav-tab" data-section="docs">Documentos</button>
   <button class="nav-tab" data-section="info">Info Viaje</button>
+  <button class="nav-tab" data-section="mapa">Mapa</button>
   <button class="nav-tab" data-section="packing">Packing</button>
   <button class="nav-tab" data-section="links">Links</button>
 </nav>
@@ -603,41 +657,49 @@ header p { font-size: 0.8rem; opacity: 0.9; }
         <span class="status-icon">✈️</span>
         <span class="status-label">Vuelos</span>
         <span class="status-value" style="color:var(--success)">✅ Comprados</span>
+        <input class="status-data-input" data-key="vuelos" placeholder="Localizador Sky..." oninput="saveStatusData(this)">
       </div>
       <div class="status-item">
         <span class="status-icon">🏨</span>
         <span class="status-label">Hotel</span>
         <span class="status-value" style="color:var(--success)">✅ Pagado</span>
+        <input class="status-data-input" data-key="hotel" placeholder="N° reserva..." oninput="saveStatusData(this)">
       </div>
       <div class="status-item">
         <span class="status-icon">🎟️</span>
         <span class="status-label">Entradas</span>
         <span class="status-value" style="color:var(--success)">✅ Compradas</span>
+        <input class="status-data-input" data-key="entradas" placeholder="N° entrada..." oninput="saveStatusData(this)">
       </div>
       <div class="status-item">
         <span class="status-icon">🛡️</span>
         <span class="status-label">Seguro</span>
         <span class="status-value" style="color:var(--success)">✅ Contratado</span>
+        <input class="status-data-input" data-key="seguro" placeholder="N° póliza..." oninput="saveStatusData(this)">
       </div>
       <div class="status-item">
         <span class="status-icon">📶</span>
         <span class="status-label">eSIM</span>
         <span class="status-value" style="color:var(--warning)">⬜ Pendiente</span>
+        <input class="status-data-input" data-key="esim" placeholder="ICCID / código..." oninput="saveStatusData(this)">
       </div>
       <div class="status-item">
         <span class="status-icon">💳</span>
         <span class="status-label">Global66</span>
         <span class="status-value" style="color:var(--warning)">⬜ Pendiente</span>
+        <input class="status-data-input" data-key="global66" placeholder="N° tarjeta..." oninput="saveStatusData(this)">
       </div>
       <div class="status-item">
         <span class="status-icon">💺</span>
         <span class="status-label">Asientos</span>
         <span class="status-value" style="color:var(--warning)">⬜ Pendiente</span>
+        <input class="status-data-input" data-key="asientos" placeholder="Fila / asiento..." oninput="saveStatusData(this)">
       </div>
       <div class="status-item">
         <span class="status-icon">🚕</span>
         <span class="status-label">Transfer</span>
         <span class="status-value" style="color:var(--warning)">⬜ Pendiente</span>
+        <input class="status-data-input" data-key="transfer" placeholder="Tel. hotel / dato..." oninput="saveStatusData(this)">
       </div>
     </div>
 
@@ -922,6 +984,43 @@ header p { font-size: 0.8rem; opacity: 0.9; }
   <div class="section" id="section-gastos">
     <div class="section-title">💸 Registro de gastos</div>
 
+    <!-- Convertidor -->
+    <div class="converter-card">
+      <div class="converter-title">💱 Convertidor de divisas</div>
+      <div class="converter-row">
+        <div class="converter-field">
+          <label class="converter-label">🇺🇸 USD</label>
+          <input class="converter-input" id="cvUSD" type="number" placeholder="0" oninput="convertFrom('usd')" inputmode="decimal" min="0">
+        </div>
+        <div class="converter-field">
+          <label class="converter-label">🇦🇷 ARS</label>
+          <input class="converter-input" id="cvARS" type="number" placeholder="0" oninput="convertFrom('ars')" inputmode="decimal" min="0">
+        </div>
+        <div class="converter-field">
+          <label class="converter-label">🇨🇱 CLP</label>
+          <input class="converter-input" id="cvCLP" type="number" placeholder="0" oninput="convertFrom('clp')" inputmode="decimal" min="0">
+        </div>
+      </div>
+      <div class="converter-rates-toggle" onclick="toggleRatesForm()">
+        ⚙️ Tasas de cambio <span id="ratesDateLabel" class="converter-rates-date"></span>
+        <span id="ratesChevron" class="card-chevron">▼</span>
+      </div>
+      <div id="ratesForm" class="converter-rates-form" style="display:none">
+        <div class="form-row" style="margin-top:10px">
+          <div class="form-field">
+            <label class="form-label">1 USD = ARS</label>
+            <input class="form-input" type="number" id="rateARS" placeholder="1080" inputmode="decimal" min="0">
+          </div>
+          <div class="form-field">
+            <label class="form-label">1 USD = CLP</label>
+            <input class="form-input" type="number" id="rateCLP" placeholder="935" inputmode="decimal" min="0">
+          </div>
+        </div>
+        <button class="btn-primary" onclick="saveRatesForm()" style="margin-top:8px">Guardar tasas</button>
+        <p class="converter-api-note">Tasas oficiales. ARS puede diferir del dólar tarjeta real.</p>
+      </div>
+    </div>
+
     <div class="gastos-summary">
       <div class="gastos-total-row">
         <span class="gastos-total-label">Total gastado</span>
@@ -1111,6 +1210,134 @@ header p { font-size: 0.8rem; opacity: 0.9; }
         <div class="info-block"><div class="info-label">Argentina</div><div class="info-value">220V · 50Hz · Compatible con Chile</div></div>
         <div class="note mt-8"><strong>Recomendación</strong>Llevar adaptador universal pequeño por seguridad.</div>
       </div></div>
+    </div>
+  </div>
+
+  <!-- ═══ MAPA ═══ -->
+  <div class="section" id="section-mapa">
+    <div class="section-title">🗺️ Mapa del parque y zona</div>
+
+    <!-- Croquis SVG inline -->
+    <div class="map-svg-wrapper">
+      <svg viewBox="0 0 360 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block" aria-label="Croquis Parque Nacional Iguazú">
+        <rect width="360" height="260" fill="#dcfce7"/>
+        <!-- Río Iguazú -->
+        <path d="M0,58 C80,46 160,68 240,52 C290,42 330,56 360,50 L360,0 L0,0 Z" fill="#bfdbfe"/>
+        <text x="160" y="28" text-anchor="middle" font-size="11" fill="#1d4ed8" font-weight="600">← Río Iguazú (→ Brasil)</text>
+        <!-- Borde cataratas -->
+        <path d="M10,58 C90,47 170,66 245,52 C285,44 325,57 358,52" fill="none" stroke="#3b82f6" stroke-width="5" stroke-opacity="0.65"/>
+        <!-- Textura selva -->
+        <text x="275" y="125" font-size="30" opacity="0.1" text-anchor="middle">🌿</text>
+        <text x="245" y="170" font-size="30" opacity="0.1" text-anchor="middle">🌿</text>
+        <!-- Eco Tren -->
+        <path d="M145,190 Q110,165 80,140 Q62,120 52,98" fill="none" stroke="#f59e0b" stroke-width="4" stroke-dasharray="10,5"/>
+        <!-- Circuito Superior -->
+        <path d="M145,190 Q130,160 115,135 Q102,112 100,90 Q100,72 118,62" fill="none" stroke="#0d9488" stroke-width="4"/>
+        <!-- Circuito Inferior -->
+        <path d="M145,190 Q158,168 165,148 Q168,128 162,108 Q155,88 148,70" fill="none" stroke="#16a34a" stroke-width="4"/>
+        <!-- Camino de acceso -->
+        <path d="M310,255 L310,205 L220,185 L145,190" fill="none" stroke="#f1f5f9" stroke-width="14"/>
+        <path d="M310,255 L310,205 L220,185 L145,190" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6,3"/>
+        <!-- Garganta del Diablo -->
+        <circle cx="52" cy="95" r="10" fill="#dc2626" stroke="white" stroke-width="2"/>
+        <text x="10" y="80" font-size="10" fill="#dc2626" font-weight="bold">Garganta</text>
+        <text x="5" y="92" font-size="10" fill="#dc2626" font-weight="bold">del Diablo</text>
+        <!-- Estación Cataratas -->
+        <rect x="136" y="183" width="18" height="14" rx="3" fill="#0f766e" stroke="white" stroke-width="1.5"/>
+        <text x="160" y="194" font-size="9" fill="#064e3b" font-weight="bold">Est. Cataratas</text>
+        <!-- Circ. Superior -->
+        <circle cx="110" cy="118" r="6" fill="#0d9488" stroke="white" stroke-width="1.5"/>
+        <text x="118" y="115" font-size="9" fill="#134e4a">Circ. Superior</text>
+        <!-- Circ. Inferior -->
+        <circle cx="162" cy="130" r="6" fill="#16a34a" stroke="white" stroke-width="1.5"/>
+        <text x="170" y="134" font-size="9" fill="#14532d">Circ. Inferior</text>
+        <!-- Gran Aventura -->
+        <circle cx="218" cy="185" r="7" fill="#2563eb" stroke="white" stroke-width="1.5"/>
+        <text x="196" y="175" font-size="9" fill="#1e40af" font-weight="600">Gran Aventura 🚤</text>
+        <!-- Entrada -->
+        <circle cx="310" cy="205" r="9" fill="#0f766e" stroke="white" stroke-width="2"/>
+        <text x="322" y="202" font-size="9.5" fill="#064e3b" font-weight="bold">Entrada</text>
+        <text x="322" y="214" font-size="8" fill="#6b7280">→ Pto. Iguazú</text>
+        <!-- Norte -->
+        <g transform="translate(335,100)">
+          <circle r="15" fill="white" stroke="#d1d5db" stroke-width="1"/>
+          <path d="M0,-10 L0,10 M-10,0 L10,0" stroke="#9ca3af" stroke-width="1.5"/>
+          <polygon points="0,-10 -3,-4 3,-4" fill="#374151"/>
+          <text y="4" text-anchor="middle" font-size="10" fill="#374151" font-weight="bold">N</text>
+        </g>
+        <!-- Leyenda -->
+        <g transform="translate(195,208)">
+          <rect width="132" height="48" rx="5" fill="white" fill-opacity="0.92" stroke="#cbd5e1" stroke-width="1"/>
+          <path d="M8,13 L22,13" stroke="#f59e0b" stroke-width="3" stroke-dasharray="8,5"/>
+          <text x="26" y="17" font-size="8.5" fill="#374151">Eco Tren</text>
+          <line x1="8" y1="26" x2="22" y2="26" stroke="#0d9488" stroke-width="2.5"/>
+          <text x="26" y="30" font-size="8.5" fill="#374151">Circ. Superior</text>
+          <line x1="8" y1="40" x2="22" y2="40" stroke="#16a34a" stroke-width="2.5"/>
+          <text x="26" y="44" font-size="8.5" fill="#374151">Circ. Inferior</text>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Ubicaciones clave -->
+    <div class="card">
+      <div class="card-header expanded" onclick="toggleCard(this)">
+        <span class="card-title"><span class="card-icon">📍</span> Ubicaciones clave</span>
+        <span class="card-chevron rotated">▼</span>
+      </div>
+      <div class="card-content expanded">
+        <div class="card-body">
+          <ul class="locations-list">
+            <li class="location-item">
+              <div class="location-info">
+                <div class="location-name">🏨 La Aldea De La Selva Lodge</div>
+                <div class="location-coords">-25.5866, -54.5516</div>
+              </div>
+              <a class="location-btn" href="https://maps.google.com/?q=-25.5866,-54.5516" target="_blank" rel="noopener">Maps</a>
+            </li>
+            <li class="location-item">
+              <div class="location-info">
+                <div class="location-name">✈️ Aeropuerto IGR</div>
+                <div class="location-coords">-25.7374, -54.4737</div>
+              </div>
+              <a class="location-btn" href="https://maps.google.com/?q=-25.7374,-54.4737" target="_blank" rel="noopener">Maps</a>
+            </li>
+            <li class="location-item">
+              <div class="location-info">
+                <div class="location-name">🎟️ Entrada Parque Nacional (ARG)</div>
+                <div class="location-coords">-25.6858, -54.4434</div>
+              </div>
+              <a class="location-btn" href="https://maps.google.com/?q=-25.6858,-54.4434" target="_blank" rel="noopener">Maps</a>
+            </li>
+            <li class="location-item">
+              <div class="location-info">
+                <div class="location-name">🌊 Garganta del Diablo</div>
+                <div class="location-coords">-25.6947, -54.4428</div>
+              </div>
+              <a class="location-btn" href="https://maps.google.com/?q=-25.6947,-54.4428" target="_blank" rel="noopener">Maps</a>
+            </li>
+            <li class="location-item">
+              <div class="location-info">
+                <div class="location-name">🇧🇷 Cataratas lado brasileño</div>
+                <div class="location-coords">-25.6953, -54.4367</div>
+              </div>
+              <a class="location-btn" href="https://maps.google.com/?q=-25.6953,-54.4367" target="_blank" rel="noopener">Maps</a>
+            </li>
+            <li class="location-item">
+              <div class="location-info">
+                <div class="location-name">🏙️ Centro Puerto Iguazú</div>
+                <div class="location-coords">-25.5972, -54.5784</div>
+              </div>
+              <a class="location-btn" href="https://maps.google.com/?q=-25.5972,-54.5784" target="_blank" rel="noopener">Maps</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Consejo offline -->
+    <div class="note">
+      <strong>📱 Mapa offline en el celular</strong>
+      Descarga la zona de Iguazú en <strong>Google Maps</strong> (Descargar área offline) o instala <strong>Maps.me</strong> / <strong>OsmAnd</strong> con el mapa de Misiones antes del viaje. Funciona sin datos móviles.
     </div>
   </div>
 
@@ -1349,7 +1576,7 @@ function installApp() {
 }
 
 // ── Versión ───────────────────────────────────────────────────────
-const APP_VERSION = '1.3';
+const APP_VERSION = '1.4';
 
 // ── Service Worker + detección de actualizaciones ─────────────────
 let waitingSW = null;
@@ -1642,6 +1869,104 @@ function closeDocViewer() {
   document.getElementById('docViewerOverlay').classList.remove('active');
 }
 
+// ── Status data (datos clave por ítem) ───────────────────────────
+const STATUS_DATA_KEY = 'iguazu2026_status_data';
+function loadStatusData() {
+  try { return JSON.parse(localStorage.getItem(STATUS_DATA_KEY)) || {}; } catch { return {}; }
+}
+function saveStatusData(el) {
+  const d = loadStatusData(); d[el.dataset.key] = el.value;
+  localStorage.setItem(STATUS_DATA_KEY, JSON.stringify(d));
+}
+function restoreStatusData() {
+  const d = loadStatusData();
+  document.querySelectorAll('.status-data-input').forEach(inp => {
+    if (d[inp.dataset.key]) inp.value = d[inp.dataset.key];
+  });
+}
+
+// ── Convertidor de divisas ────────────────────────────────────────
+const RATES_KEY     = 'iguazu2026_rates';
+const DEFAULT_RATES = { usd_ars: 1080, usd_clp: 935 };
+
+function loadRates() {
+  try { return JSON.parse(localStorage.getItem(RATES_KEY)) || { ...DEFAULT_RATES }; }
+  catch { return { ...DEFAULT_RATES }; }
+}
+function saveRates(r) { localStorage.setItem(RATES_KEY, JSON.stringify(r)); }
+
+function updateRateDisplay(rates) {
+  const arsEl = document.getElementById('rateARS');
+  const clpEl = document.getElementById('rateCLP');
+  if (arsEl) arsEl.value = rates.usd_ars;
+  if (clpEl) clpEl.value = rates.usd_clp;
+  const dateEl = document.getElementById('ratesDateLabel');
+  if (dateEl && rates.date) dateEl.textContent = '· ' + rates.date;
+}
+
+async function fetchRatesIfStale() {
+  const today = new Date().toISOString().split('T')[0];
+  const cached = loadRates();
+  updateRateDisplay(cached); // Muestra lo que tenemos antes del fetch
+  if (cached.date === today) return; // Ya están actualizadas hoy
+  try {
+    const res = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+    if (!res.ok) return;
+    const data = await res.json();
+    const rates = { usd_ars: Math.round(data.rates.ARS), usd_clp: Math.round(data.rates.CLP), date: today };
+    saveRates(rates);
+    updateRateDisplay(rates);
+    // Recalcular si hay un valor en el convertidor
+    const usd = document.getElementById('cvUSD')?.value;
+    if (usd) convertFrom('usd');
+  } catch { /* Falla silenciosamente, usa caché */ }
+}
+
+function convertFrom(from) {
+  const rates = loadRates();
+  const usdEl = document.getElementById('cvUSD');
+  const arsEl = document.getElementById('cvARS');
+  const clpEl = document.getElementById('cvCLP');
+  if (!usdEl || !arsEl || !clpEl) return;
+  let usd = 0;
+  if (from === 'usd') {
+    usd = parseFloat(usdEl.value) || 0;
+    arsEl.value = usd ? Math.round(usd * rates.usd_ars) : '';
+    clpEl.value = usd ? Math.round(usd * rates.usd_clp) : '';
+  } else if (from === 'ars') {
+    const ars = parseFloat(arsEl.value) || 0;
+    usd = ars ? ars / rates.usd_ars : 0;
+    usdEl.value = usd ? usd.toFixed(2) : '';
+    clpEl.value = usd ? Math.round(usd * rates.usd_clp) : '';
+  } else {
+    const clp = parseFloat(clpEl.value) || 0;
+    usd = clp ? clp / rates.usd_clp : 0;
+    usdEl.value = usd ? usd.toFixed(2) : '';
+    arsEl.value = usd ? Math.round(usd * rates.usd_ars) : '';
+  }
+}
+
+function toggleRatesForm() {
+  const form    = document.getElementById('ratesForm');
+  const chevron = document.getElementById('ratesChevron');
+  const open    = form.style.display !== 'none';
+  form.style.display = open ? 'none' : 'block';
+  if (chevron) chevron.classList.toggle('rotated', !open);
+}
+
+function saveRatesForm() {
+  const ars = parseFloat(document.getElementById('rateARS').value);
+  const clp = parseFloat(document.getElementById('rateCLP').value);
+  if (!ars || !clp || ars <= 0 || clp <= 0) return;
+  const today = new Date().toISOString().split('T')[0];
+  const rates = { usd_ars: ars, usd_clp: clp, date: today };
+  saveRates(rates);
+  const dateEl = document.getElementById('ratesDateLabel');
+  if (dateEl) dateEl.textContent = '· guardado ' + today;
+  const usd = document.getElementById('cvUSD')?.value;
+  if (usd) convertFrom('usd');
+}
+
 // ── Helpers ───────────────────────────────────────────────────────
 function esc(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -1875,6 +2200,7 @@ function saveNewCard() {
 loadTheme();
 restoreState();
 restoreNotes();
+restoreStatusData();
 restoreCustomTasks();
 renderCountdown();
 renderGastos();
@@ -1885,6 +2211,7 @@ injectAddTaskForms();
 updateAllBadges();
 updateClocks();
 setInterval(updateClocks, 60000);
+fetchRatesIfStale();
 </script>
 </body>
 </html>
